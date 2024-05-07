@@ -1,0 +1,14 @@
+@import '../../shared/utils/vars.scss';
+
+.subtitlesViewer {
+  .dataTitle {
+    font-weight: bold;
+  }
+  .manifestSelector {
+    display: flex;
+    margin-bottom: 1rem;
+    select {
+      margin-left: 1rem;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.playerOverlay {
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  min-height: 30px;
+  z-index: 2;
+  background-color: #000;
+  color: #fdfdfd;
+  opacity: 0.7;
+  padding: 4px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.playerOverlay .overlayButton {
+  cursor: pointer;
+  position: relative;
+  background-color: #333;
+  color: #fdfdfd;
+  padding: 2px;
+  opacity: 0.7;
+  margin: 0 5px;
+  border: 2px solid #fdfdfd;
+  border-radius: 2px;
+  -webkit-transition: all 0.05s linear;
+  transition: all 0.05s linear;
+}
+
+.playerOverlay .overlayButton:hover {
+  background-color: #fdfdfd;
+  opacity: 1;
+  -webkit-transition: all 0.05s linear;
+  transition: all 0.05s linear;
+  color: #333;
+}
+
+.playerOverlay .bitratesContainer {
+  max-width: 160px;
+  float: left;
+  position: relative;
+  overflow-y: auto;
+}

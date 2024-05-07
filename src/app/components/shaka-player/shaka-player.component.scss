@@ -1,0 +1,11 @@
+@import '../../shared/utils/vars';
+
+video,
+.holdTemp {
+  height: 100%;
+  width: 100%;
+  background-color: $black;
+}
+.holdTemp {
+  position: absolute;
+}

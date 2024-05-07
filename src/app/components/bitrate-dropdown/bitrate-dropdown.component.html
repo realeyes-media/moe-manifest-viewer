@@ -1,0 +1,15 @@
+<div class="allBitratesContainer" [class.closed]="closed" (clickOutside)="toggleMenu(false)">
+  <div class="bitrates">
+    <div *ngIf="currentBitrate" class="bitrate currentBitrate">
+      <div class="bitrateText" (click)="closed ? toggleMenu(true) : bitrateClick(currentBitrate, $event)">
+        {{ currentBitrate | bitratePipe }}
+      </div>
+      <div class="caret" (click)="toggleMenu(closed)">&#9660;</div>
+    </div>
+    <div class="bitrate" *ngFor="let bitrate of bitrates; let i = index" [class.hideBitrate]="bitrate === currentBitrate || !bitrate">
+      <div class="bitrateText" (click)="closed ? toggleMenu(true) : bitrateClick(bitrate, $event)">{{ bitrate | bitratePipe }}</div>
+      <div *ngIf="!currentBitrate && i === 0" class="caret" (click)="toggleMenu(closed)">&#9660;</div>
+    </div>
+    <div *ngIf="auto" class="bitrate" (click)="onAutoSelect()">Auto <span *ngIf="usingAbr" class="abrCheck">&#9989;</span></div>
+  </div>
+</div>

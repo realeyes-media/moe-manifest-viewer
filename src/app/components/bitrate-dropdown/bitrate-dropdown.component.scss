@@ -1,0 +1,57 @@
+@import '../../shared/utils/vars';
+
+.allBitratesContainer {
+  box-sizing: border-box;
+  overflow: hidden;
+  max-height: 100%;
+  transition: max-height $transition-speed linear;
+  border-radius: 4px;
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+  user-select: none;
+  .bitrates {
+    .bitrate {
+      background-color: $whitest;
+      color: $dark;
+      padding: 2px;
+      padding-top: 3px;
+      border-bottom: 1px solid $dark;
+      box-sizing: border-box;
+      clear: both;
+      height: 21px;
+      transition: background-color $transition-speed linear;
+
+      &.hideBitrate {
+        display: none;
+      }
+      &.currentBitrate {
+        background-color: $green-color;
+      }
+      &.currentBitrate:hover {
+        opacity: 0.8;
+        background-color: $green-color;
+      }
+    }
+
+    .bitrate:hover {
+      cursor: pointer;
+      background-color: $off-white;
+      transition: background-color $transition-speed linear;
+    }
+    .bitrateText {
+      color: black;
+      float: left;
+    }
+    .caret {
+      cursor: pointer;
+      color: black;
+      float: right;
+    }
+    .abrCheck {
+      font-size: 11px;
+    }
+  }
+}
+.allBitratesContainer.closed {
+  max-height: 20px;
+  transition: max-height $transition-speed linear;
+}

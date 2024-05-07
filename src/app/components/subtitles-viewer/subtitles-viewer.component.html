@@ -1,0 +1,15 @@
+<div class="subtitlesViewer">
+  <div class="manifestSelector">
+    <div>Time (seconds): {{ viewerState.currentTime }}</div>
+    <select name="select" (change)="onChangeLanguage($event.target.value)">
+      <option>none</option>
+      <option *ngFor="let subtitle of viewerState.subtitles; index as i" [selected]="selectedSubtitles?.name === subtitle?.name">
+        {{ subtitle.name }}
+      </option>
+    </select>
+  </div>
+  <div class="dataTitle">Manifest URL {{ selectedSubtitles?.name ? '[' + selectedSubtitles.name + ']' : '' }}:</div>
+  {{ selectedSubtitles?.url }}
+  <div class="dataTitle">Current caption:</div>
+  {{ viewerState.currentCaption }}
+</div>

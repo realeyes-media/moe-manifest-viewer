@@ -1,0 +1,64 @@
+.metricsWrapper .header {
+  margin: 0;
+  padding: 10px 0;
+}
+
+.metricsWrapper .sectionHeader {
+  font-weight: bold;
+}
+
+.metricsWrapper .metricList {
+  height: 20px;
+}
+
+.metricsWrapper .metricList .text {
+  float: left;
+}
+
+.metricsWrapper .right {
+  float: left;
+  max-width: 50%;
+}
+
+@media screen and (max-width: 1005px) {
+  .metricsWrapper .right {
+    clear: both;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .metricsWrapper .right {
+    float: left;
+    max-width: 50%;
+    clear: none !important;
+  }
+}
+
+@media screen and (max-width: 526px) {
+  .metricsWrapper .right {
+    clear: both !important;
+  }
+}
+
+.metricsWrapper .left {
+  float: left;
+  min-width: 50%;
+}
+
+.metricsWrapper .dividerDiv {
+  clear: both;
+}
+
+.metricsWrapper .metricsLink {
+  cursor: pointer;
+  text-decoration: underline;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.metricsWrapper .alignmentStatus .alignmentMessage {
+  display: block;
+  padding-left: 20px;
+}

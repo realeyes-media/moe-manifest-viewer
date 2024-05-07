@@ -1,0 +1,13 @@
+<div class="errorContainer">
+  <div class="loadError">
+    <h3 class="errTitle">Error Loading Manifest</h3>
+    <div>Status: {{ manifestResponse.status }}</div>
+    <div>Text: {{ manifestResponse.text }}</div>
+    <div>Type: {{ manifestResponse.type }}</div>
+  </div>
+  <br />
+  <div class="mixedContentContainer" *ngIf="errorType === 'mixedContentError'">
+    This browser forbids loading http content on an https domain.
+    <div class="link" (click)="onHttpClick()">Link to http version</div>
+  </div>
+</div>

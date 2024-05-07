@@ -1,0 +1,36 @@
+@import '../../shared/utils/vars';
+
+.content {
+  width: 100%;
+
+  .not-url {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-segment {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 15px;
+
+    .search-button {
+      background-color: #555;
+      &:hover {
+        background-color: #000;
+        box-shadow: none;
+      }
+    }
+
+    .input-segment {
+      border: 1px solid #ccc;
+      margin: 0;
+      width: 60%;
+    }
+
+    .input-segment:focus,
+    .search-button:hover {
+      border-color: #000;
+    }
+  }
+}

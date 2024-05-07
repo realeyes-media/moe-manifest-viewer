@@ -1,0 +1,208 @@
+<div id="options-wrapper" (clickOutside)="onClickOutside($event)">
+  <div class="optionsSideHeading">
+    <div class="logoDiv">
+      <div class="logoHolder" (click)="clickLogo()"></div>
+    </div>
+    <span id="optionsSideLabel">MOE:Viewer</span>
+    <button *ngIf="termsCookieExists" id="leaveOptions" (click)="toggleOptions(false)">&times;</button>
+  </div>
+  <div *ngIf="termsCookieExists; else acceptTermsBody" class="modalContents">
+    <div id="option-input">
+      <div class="urlInputContainer" (click)="onClickUrlInput($event)" (clickOutside)="onClickOutsideUrlInput($event)">
+        <div class="stopText">
+          <input
+            type="text"
+            #urlInput
+            id="url-input"
+            class="options-modal-input"
+            (keyup)="onInputKeyup($event)"
+            [(ngModel)]="url"
+            placeholder="Enter url"
+            autocomplete="off"
+          />
+          <div class="dropdownButton"><i class="material-icons dropIcon"> expand_more </i></div>
+        </div>
+        <div class="viewerDropdownContainer">
+          <app-viewer-dropdown (loadStoredViewer)="loadStoredViewer($event)" [show]="showInputDropdown"></app-viewer-dropdown>
+        </div>
+      </div>
+      <button id="option-drm" class="option-button" (click)="addDrmSupport()">
+        <span *ngIf="!appService.isDrmActive">Enable DRM Support</span>
+        <span *ngIf="appService.isDrmActive">DRM Support Enabled ✅</span>
+      </button>
+      <button id="option-getVideo" class="option-button" [disabled]="useCustomPlayerConfig && !customPlayerConfig" (click)="loadUrl()">
+        Load Manifest Session
+      </button>
+    </div>
+    <div class="listContainer leftColumn">
+      <label class="checkboxContainer" (mouseup)="setOnAppService('toggleShowVideo', !showVideo)"
+        >Show Video
+        <input type="checkbox" [class.active]="showVideo" />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer" (mouseup)="setOnAppService('toggleCredentialsService', !withCredentials)"
+        >XHR Credentials
+        <input type="checkbox" [class.active]="withCredentials" />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer" *ngIf="possibleNative" (mouseup)="setOnAppService('toggleNative', !useNative)"
+        >Use Hls.js
+        <input type="checkbox" [class.active]="!useNative" />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer" (mouseup)="toggleUseGlobalToken(!useGlobalToken)"
+        >Global Token
+        <input type="checkbox" [class.active]="useGlobalToken" />
+        <span class="checkmark"></span>
+      </label>
+      <div class="globalTokenInputContainer" [class.noHeight]="!useGlobalToken">
+        <input
+          id="select-Global"
+          #globalTokenInput
+          class="options-modal-input"
+          type="text"
+          placeholder="Input Global Token"
+          [(ngModel)]="globalToken"
+          value=""
+        />
+        <button id="globalTokenGet" class="option-button" (click)="loadGlobalToken(globalToken)">Set</button>
+      </div>
+      <label class="checkboxContainer" (mouseup)="setOnAppService('toggleShowPollingService', !showPolling)"
+        >Automatic Polling
+        <input type="checkbox" [class.active]="showPolling" />
+        <span class="checkmark"></span>
+      </label>
+      <div class="listItem">
+        <span id="sideLabel"
+          >Poll every
+          <input
+            id="input-number"
+            class="input-number"
+            type="number"
+            autocomplete="off"
+            [(ngModel)]="seconds"
+            (keyup)="onIntervalChange(seconds)"
+            (click)="onIntervalChange(seconds)"
+          />seconds</span
+        >
+      </div>
+      <label class="checkboxContainer" (mouseup)="toggleCustomScriptVersion(!useCustomHlsVersion, customLibraryScript.HLS)">
+        Use Custom Hls.js Version
+        <input type="checkbox" [class.active]="useCustomHlsVersion" />
+        <span class="checkmark"></span>
+      </label>
+      <div class="globalTokenInputContainer" [class.noHeight]="!useCustomHlsVersion">
+        <input class="options-modal-input" type="text" placeholder="Enter Version e.g 0.14.17" [(ngModel)]="customHlsVersion" value="" />
+        <button
+          class="option-button"
+          [disabled]="!customHlsVersion"
+          (click)="loadCustomScriptVersion(customHlsVersion, customLibraryScript.HLS)"
+        >
+          Load
+        </button>
+      </div>
+      <label class="checkboxContainer" (mouseup)="toggleCustomScriptVersion(!useCustomDashVersion, customLibraryScript.DASH)">
+        Use Custom Dash.js Version
+        <input type="checkbox" [class.active]="useCustomDashVersion" />
+        <span class="checkmark"></span>
+      </label>
+      <div class="globalTokenInputContainer" [class.noHeight]="!useCustomDashVersion">
+        <input class="options-modal-input" type="text" placeholder="Enter Version e.g 3.2.2" [(ngModel)]="customDashVersion" value="" />
+        <button
+          class="option-button"
+          [disabled]="!customDashVersion"
+          (click)="loadCustomScriptVersion(customDashVersion, customLibraryScript.DASH)"
+        >
+          Load
+        </button>
+      </div>
+      <label class="checkboxContainer" (mouseup)="toggleCustomScriptVersion(!useCustomShakaVersion, customLibraryScript.SHAKA)">
+        Use Custom Shaka Version
+        <input type="checkbox" [class.active]="useCustomShakaVersion" />
+        <span class="checkmark"></span>
+      </label>
+      <div class="globalTokenInputContainer" [class.noHeight]="!useCustomShakaVersion">
+        <input class="options-modal-input" type="text" placeholder="Enter Version e.g 3.0.10" [(ngModel)]="customShakaVersion" value="" />
+        <button
+          class="option-button"
+          [disabled]="!useCustomShakaVersion"
+          (click)="loadCustomScriptVersion(customShakaVersion, customLibraryScript.SHAKA)"
+        >
+          Load Normal
+        </button>
+        <button
+          class="option-button noButton"
+          [disabled]="!useCustomShakaVersion"
+          (click)="loadCustomScriptVersion(customShakaVersion, customLibraryScript.SHAKA_Debug)"
+        >
+          Load Debug
+        </button>
+      </div>
+
+      <label class="checkboxContainer" *ngIf="isPlayerSelected" (mouseup)="toggleCustomPlayerConfig(!useCustomPlayerConfig)">
+        Use Custom Player Config
+        <input type="checkbox" [class.active]="useCustomPlayerConfig" />
+        <span class="checkmark"></span>
+      </label>
+      <div class="globalTokenInputContainer" [class.noHeight]="!useCustomPlayerConfig">
+        <textarea
+          class="options-modal-textarea no-resize"
+          type="text"
+          rows="6"
+          placeholder="Config JSON"
+          [(ngModel)]="customPlayerConfig"
+          value=""
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="listContainer rightColumn">
+      <label class="checkboxContainer" (mouseup)="setOnAppService('toggleMuteVideo', !muteVideo)"
+        >Mute Video
+        <input type="checkbox" [class.active]="muteVideo" />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer" (mouseup)="setOnAppService('toggleMetricsService', !displayMetrics)"
+        >Show Metrics
+        <input type="checkbox" [class.active]="displayMetrics" />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer" (mouseup)="setOnAppService('toggleStallDetectorService', !displayStallDetector)"
+        >Show Stall-Detector
+        <input type="checkbox" [class.active]="displayStallDetector" />
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkboxContainer" *ngIf="showVideo" (mouseup)="setOnAppService('togglePlayerLogsService', !displayPlayerLogs)"
+        >Show Player-Logs
+        <input type="checkbox" [class.active]="displayPlayerLogs" />
+        <span class="checkmark"></span>
+      </label>
+      <div class="listButton">
+        <button class="clearSettingsCookieButton" (click)="activateClearSettingsConfirmationPanel()">{{ settingsClearButtonText }}</button>
+      </div>
+      <div *ngIf="clearSettingsConfirmationPanelToggled" class="clearSettingsConfirmationPanel">
+        <div class="clearStorageMessage">Are you sure you want to clear your storage? This will remove all saved manifests.</div>
+        <button class="yesButton" (click)="clearSettingsCookie()">Yes</button>
+        <button class="noButton" (click)="closeClearSettingsConfirmationPanel()">No</button>
+      </div>
+      <div class="listButton" *ngIf="relm">
+        <button id="getRelm" class="option-button" name="relm" color="primary" (click)="relmClicked()">RE Live Manifester</button>
+      </div>
+    </div>
+    <div class="clearBoth"></div>
+    <div class="build-info">Version:&nbsp;{{ version }}</div>
+  </div>
+  <ng-template #acceptTermsBody>
+    <div class="termsOfUse">
+      MOE Viewer is in Early Access Preview - access to this service is given on a trial, as is basis, and may be revoked at any time. The
+      products will change before going into production, and may be a part of a paid service in the future. All services are provided as-is;
+      RealEyes does not guarantee any level of service at this time, and provides no warranty. As Early Access software, there will be bugs,
+      issues, and outages.
+      <div class="termsContainer">
+        <div class="verticalAlignment">
+          <button class="acceptTerms" (click)="acceptTerms()">Accept</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

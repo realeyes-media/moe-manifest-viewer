@@ -1,0 +1,418 @@
+@import '../../shared/utils/vars';
+$manifestTopTopRowHeight: 36px;
+$manifestTopHeaderHeight: 45px;
+$manifestTopOptionsHeight: 43px;
+
+.noHeight {
+  height: 0 !important;
+  transition: height linear $transition-speed;
+}
+
+.dropDown {
+  margin: 5px;
+  float: right;
+}
+.manifest-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.manifest-top {
+  height: calc(#{$manifestTopHeaderHeight} + #{$manifestTopTopRowHeight});
+  transition: height linear $transition-speed;
+  &.closedHeader {
+    height: #{$manifestTopTopRowHeight};
+    transition: height linear $transition-speed;
+  }
+  .topRow {
+    position: relative;
+    height: $manifestTopTopRowHeight;
+    width: 100%;
+    .topContainerWrapper {
+      height: 100%;
+      .topContainer {
+        height: 100%;
+        position: relative;
+        .topBar {
+          align-items: center;
+          display: flex;
+          height: 33px;
+          .menuButton {
+            background: none;
+            border: none;
+            color: #000;
+            &:hover {
+              box-shadow: none;
+            }
+          }
+        }
+        .topLeft {
+          position: relative;
+          float: left;
+          .manifestTitle {
+            height: 33px;
+            background-color: $page-background;
+            color: $dark;
+            font-size: 16px;
+            transition: width $transition-speed;
+            font-family: 'Lucida Console', Monaco, monospace;
+            text-overflow: ellipsis;
+            &.singleLineView {
+              max-width: 252px;
+            }
+          }
+          .manifestTitle:focus {
+            border-bottom: 1px dotted black;
+          }
+          .closeButton {
+            cursor: pointer;
+            background-color: rgba(102, 102, 102, 0.34);
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 0 4px;
+            margin: 1px;
+            transition: opacity linear $transition-speed;
+            margin: 9px 1px;
+            display: block;
+            float: left;
+            &:hover {
+              transition: opacity linear $transition-speed;
+              opacity: 1;
+            }
+          }
+        }
+        .topRight {
+          position: absolute;
+          right: 0;
+          top: 0;
+          &.singleLineView {
+            min-width: 361px;
+            height: 36px;
+          }
+
+          .tab-dropdown-wrapper {
+            height: 100%;
+            .dropdownIcon {
+              z-index: 5;
+              margin: 5px;
+              position: absolute;
+              right: 0;
+              user-select: none;
+              cursor: pointer;
+            }
+            .tab-dropdowns-container {
+              position: absolute;
+              z-index: 3;
+              right: 1px;
+              top: 3px;
+              width: 111px;
+              padding-left: 4px;
+              padding-bottom: 7px;
+              padding-right: 4px;
+              padding-top: 25px;
+              background-color: $whitest;
+              opacity: 0.98;
+              white-space: nowrap;
+              border-radius: 2px;
+              transition: width linear $transition-speed;
+              box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 1);
+              &.closed {
+                padding-left: 0;
+                padding-right: 0;
+                width: 0;
+                overflow-x: hidden;
+                transition: width linear $transition-speed;
+              }
+              &.singleLineView {
+                position: relative;
+                padding-top: 0;
+                background-color: inherit;
+                box-shadow: none;
+                width: 100%;
+                .tab-dropdown {
+                  float: right;
+                }
+                .eachTabDropdown {
+                  display: inline-block;
+                }
+                .response {
+                  min-width: 75px;
+                }
+                .setLevelButton {
+                  margin: 2px 5px;
+                }
+              }
+
+              .tab-dropdown {
+                text-align: center;
+
+                .eachTabDropdown {
+                  position: relative;
+                  width: 92px;
+                  height: 28px;
+                  margin: 0 auto;
+                }
+                .tabSetText {
+                  position: absolute;
+                  left: 0;
+                  top: 8px;
+                }
+                .dropdownContainer {
+                  position: absolute;
+                  right: 3px;
+                  top: 4px;
+                  z-index: 2;
+                }
+                .dashDropdown {
+                  position: relative;
+                  width: 104px;
+                  height: 28px;
+                }
+                .playerDropdown {
+                  position: relative;
+                  width: 104px;
+                  height: 28px;
+                  margin-right: 6px;
+                }
+
+                .setLevelButton {
+                  padding: 6px;
+                }
+              }
+              .response {
+                margin: 2px 4px;
+                padding: 3px 0;
+                line-height: 15px;
+              }
+              .toggleManifestHeaderIcon {
+                cursor: pointer;
+                user-select: none;
+                transition: all $transition-speed linear;
+                .collapseText {
+                  &:hover {
+                    color: $middle-color;
+                    transition: all $transition-speed linear;
+                  }
+                }
+                .collapseIcon {
+                  transition: transform $transition-speed linear;
+                  &.rotated {
+                    transform: rotate(90deg);
+                    transition: transform $transition-speed linear;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .clearBoth {
+    clear: both;
+  }
+  .inputsRow {
+    height: $manifestTopHeaderHeight;
+    overflow-y: hidden;
+    transition: height linear $transition-speed;
+    input {
+      background-color: $whitest;
+      width: 100%;
+      padding: 5px 3px;
+      box-shadow: 0px 0px 10px -6px rgba(0, 0, 0, 0.74);
+    }
+    input:focus {
+      border-color: $accent;
+      color: $accent;
+      transition: color linear $transition-speed;
+    }
+    input:focus::placeholder {
+      color: $accent;
+      transition: color linear $transition-speed;
+    }
+  }
+}
+
+.viewerContents {
+  height: calc(100% - #{$manifestTopHeaderHeight} - #{$manifestTopTopRowHeight});
+  transition: height linear $transition-speed;
+  position: relative;
+  padding-left: 42px;
+  background-color: $whitest;
+  &.moveContent {
+    padding-left: 190px;
+  }
+  &.viewerContents.closedHeader {
+    height: calc(100% - 33px);
+    transition: height linear $transition-speed;
+  }
+  .manifest-text-container {
+    height: 100%;
+    &.showVideo {
+      height: 50%;
+      &.onlyViewer {
+        @media screen and (min-width: $singleViewerDisplayBreakPoint) {
+          height: 100%;
+          width: calc(50% - #{$manifestToolsWidth});
+          &.menuOpen {
+            width: calc(50% - #{$manifestToolsWidth} - 80px);
+          }
+        }
+      }
+    }
+    .textComponentContainer {
+      height: 100%;
+      transition: height linear $transition-speed;
+      &.searchOpen {
+        height: calc(100% - 27px);
+        transition: height linear $transition-speed;
+        padding-top: 10px;
+      }
+    }
+    app-text {
+      flex-grow: 1;
+      overflow: auto;
+    }
+    .buttonNotSelected {
+      color: black;
+      background: white;
+      border: 1px solid black;
+    }
+    .search {
+      padding: 6px 0 1px 0;
+      height: 18px;
+      font-size: 12px;
+      border-bottom: 1px solid black;
+      transition: all linear 0.05s;
+      max-width: 800px;
+      .searchComponents {
+        .inputContainer {
+          width: calc(100% - 66px);
+          display: block;
+          float: left;
+
+          .searchInput {
+            height: 100%;
+            width: 100%;
+            border-radius: 2px;
+            background-color: inherit;
+          }
+        }
+
+        .searchFields {
+          display: block;
+          float: right;
+          max-width: 66px;
+          margin-top: 4px;
+        }
+      }
+      &.errored {
+        background-color: $error-color;
+      }
+    }
+  }
+  .metricsAndVideo {
+    position: relative;
+    height: 50%;
+    &.onlyViewer {
+      @media screen and (min-width: $singleViewerDisplayBreakPoint) {
+        position: absolute;
+        height: 100%;
+        width: 50%;
+        right: 0;
+        top: 0;
+      }
+    }
+
+    .videoPanel {
+      height: 100%;
+      background-color: $page-background;
+      padding: 4px 0px 0px 4px;
+      box-sizing: border-box;
+      .videoPlayerContainer {
+        height: 100%;
+        width: 100%;
+        background-color: $whitest;
+        position: relative;
+      }
+      &.onlyViewer {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        padding-bottom: 4px;
+        padding-top: 0px;
+        @media screen and (min-width: $singleViewerDisplayBreakPoint) {
+          height: 50%;
+        }
+      }
+      &.metricsShowing {
+        position: relative;
+        height: 50%;
+        padding: 2px 0px 0px 4px;
+        @media screen and (min-width: $singleViewerDisplayBreakPoint) {
+          padding-bottom: 4px;
+          padding-top: 0px;
+        }
+      }
+    }
+
+    .metricsPanel {
+      height: 100%;
+      background-color: $page-background;
+      padding: 4px 0px 0px 4px;
+      box-sizing: border-box;
+
+      .metricsContainer {
+        height: 100%;
+        width: 100%;
+        background-color: $whitest;
+        position: relative;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 10px;
+        box-sizing: border-box;
+        line-height: 17px;
+      }
+      &.onlyViewer {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        padding-top: 4px;
+        padding-bottom: 0px;
+        @media screen and (min-width: $singleViewerDisplayBreakPoint) {
+          height: 100%;
+          padding-top: 0;
+          &.videoShowing {
+            height: 50%;
+          }
+        }
+      }
+      &.videoShowing {
+        height: 50%;
+        padding: 4px 0px 2px 4px;
+      }
+    }
+  }
+}
+
+.manifestTools {
+  position: absolute;
+  width: $manifestToolsWidth;
+  left: 0;
+  user-select: none;
+  z-index: 3;
+}
+
+.help-container {
+  position: absolute;
+  width: 66%;
+  top: 1%;
+  left: 16%;
+  z-index: 100;
+  background-color: $whitest;
+}
+
+.manifest-view-swapper {
+  justify-content: center;
+  margin: 0;
+}

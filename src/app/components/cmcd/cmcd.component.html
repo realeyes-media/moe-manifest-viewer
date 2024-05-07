@@ -1,0 +1,68 @@
+<div class="cmcdWrapper">
+  <div class="section left">
+    <div>
+      <div>
+        <label for="enableCMCD">Enable CMCD</label>:
+        <input
+          type="checkbox"
+          name="enableCMCD"
+          [checked]="cmcdOptions.enabled"
+          type="checkbox"
+          (click)="toggleCmcdEnabled(!cmcdOptions.enabled)"
+        />
+      </div>
+      <div>
+        <label for="sessionId">Session ID</label>:
+        <input
+          class="cmcd-input"
+          type="text"
+          name="sessionId"
+          [(ngModel)]="cmcdOptions.sessionId"
+          (keyup)="updateValue()"
+          [placeholder]="sessionIdPlaceHolder"
+        />
+      </div>
+      <div>
+        <label for="contentId">Content ID</label>:
+        <input
+          class="cmcd-input"
+          type="text"
+          name="contentId"
+          [(ngModel)]="cmcdOptions.contentId"
+          (keyup)="updateValue()"
+          [placeholder]="contentIdPlaceHolder"
+        />
+      </div>
+      <div>
+        <label for="transitionMode">Transition Mode</label>:
+        <div name="transitionMode">
+          <div>
+            <input type="radio" name="query" [(ngModel)]="cmcdOptions.transitionMode" value="query" (change)="updateValue()" />
+            <label for="query">Query</label>
+          </div>
+          <div>
+            <input type="radio" name="headers" [(ngModel)]="cmcdOptions.transitionMode" value="header" (change)="updateValue()" />
+            <label for="headers">Header</label>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label for="cmcdKeys">CMCD Keys</label>:
+        <input
+          [placeholder]="paramsPlaceHolder"
+          class="cmcd-input"
+          type="text"
+          name="cmcdKeys"
+          [(ngModel)]="paramsText"
+          (keyup)="updateValue()"
+        />
+      </div>
+    </div>
+    <div>
+      <button (click)="applyCMCDChanges()">Apply changes</button>
+    </div>
+    <div>
+      <span *ngIf="updateMessage" class="cmcd-update-success">CMCD updated succesfully!</span>
+    </div>
+  </div>
+</div>

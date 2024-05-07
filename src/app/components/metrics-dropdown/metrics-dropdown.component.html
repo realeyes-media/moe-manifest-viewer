@@ -1,0 +1,37 @@
+<div class="textDropdownContainer">
+  <div class="textContainer">
+    <div>
+      {{ metricType }}<span *ngIf="metrics && metrics.length > 1">&nbsp;({{ metrics.length }})</span>:
+      <span class="singleMetric" *ngIf="metrics && metrics.length === 1" (click)="metricClick(metrics[0])"
+        >&nbsp;{{ metrics[0].displayText || metrics[0].time.toFixed(2) + 's' }}</span
+      >
+    </div>
+  </div>
+  &nbsp;
+  <div class="dropdownContainer" *ngIf="metrics && metrics.length > 1">
+    <div
+      class="inputDropdownContainer"
+      #inputDropdownContainer
+      *ngIf="metrics && metrics.length"
+      [class.open]="showMetrics"
+      (clickOutside)="setMetricVis(false)"
+    >
+      <div *ngIf="currentMetric" class="eachItem">
+        <span class="eachItemText" (click)="showMetrics ? metricClick(currentMetric) : setMetricVis(true)"
+          >&nbsp;{{ currentMetric.displayText || currentMetric.time.toFixed(2) + 's' }}</span
+        >
+      </div>
+
+      <div
+        class="eachItem"
+        *ngFor="let metricObj of metrics || []"
+        [class.hideMetric]="metricObj === currentMetric"
+        (click)="showMetrics || metrics.length < 2 ? setMetricVis(false) && metricClick(metricObj) : setMetricVis(true)"
+      >
+        <span class="eachItemText">
+          {{ metricObj.displayText || metricObj.time.toFixed(2) + 's' }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

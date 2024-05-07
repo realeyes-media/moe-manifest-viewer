@@ -1,0 +1,239 @@
+.options-modal-input {
+  padding: 9px;
+  background: inherit;
+  font-weight: bold;
+  width: 100%;
+}
+
+.noHeight {
+  height: 0 !important;
+}
+
+.options-modal-textarea {
+  padding: 9px;
+  background: #ddd;
+  width: 90%;
+  outline: none;
+}
+
+.no-resize {
+  resize: none;
+}
+
+.clearBoth {
+  clear: both;
+}
+
+#options-wrapper {
+  width: 640px;
+  position: relative;
+  background-color: #fdfdfd;
+  margin: 40px auto;
+  pointer-events: initial;
+  -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.42);
+  box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.42);
+}
+
+#options-wrapper .optionsSideHeading {
+  background-color: #333;
+  color: #fdfdfd;
+  min-height: 64px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px 16px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+#options-wrapper .optionsSideHeading #optionsSideLabel {
+  font-size: 20px;
+  position: absolute;
+  left: 39%;
+}
+
+#options-wrapper .optionsSideHeading #leaveOptions {
+  font-size: 20px;
+  cursor: pointer;
+  bottom: 10px;
+  position: relative;
+  float: right;
+}
+
+#options-wrapper .optionsSideHeading #leaveOptions:hover {
+  background-color: #333;
+}
+
+#options-wrapper .optionsSideHeading .logoDiv {
+  position: relative;
+  float: left;
+  height: 65px;
+  width: 121px;
+  margin: -13px 0 0 -9px;
+  cursor: pointer;
+}
+
+#options-wrapper .optionsSideHeading .logoHolder {
+  background-image: url('./../../../assets/MOE-Icon.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+}
+
+#options-wrapper .modalContents {
+  padding: 0 32px 32px 32px;
+}
+
+#options-wrapper .modalContents #option-input {
+  padding-top: 10px;
+  text-align: center;
+}
+
+#options-wrapper .modalContents #option-input .urlInputContainer {
+  position: relative;
+}
+
+#options-wrapper .modalContents #option-input .urlInputContainer .stopText {
+  background-color: #ddd;
+  margin-bottom: 10px;
+  padding-right: 20px;
+}
+
+#options-wrapper .modalContents #option-input .urlInputContainer .dropdownButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 33px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+}
+
+#options-wrapper .modalContents #option-input .urlInputContainer .dropdownButton .dropIcon {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin-top: 6px;
+}
+
+#options-wrapper .modalContents #option-input .urlInputContainer .viewerDropdownContainer {
+  width: 100%;
+  position: absolute;
+  top: 33px;
+}
+
+#options-wrapper .modalContents #option-getVideo {
+  float: right;
+}
+
+#options-wrapper .modalContents .build-info {
+  float: right;
+}
+
+#options-wrapper .modalContents .listContainer {
+  width: 50%;
+  padding-right: 20px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /* When the checkbox is checked, add a blue background */
+  /* Create the checkmark/indicator (hidden when not checked) */
+  /* Show the checkmark when checked */
+  /* Style the checkmark/indicator */
+  /* https://www.w3schools.com/howto/howto_css_custom_checkbox.asp*/
+}
+
+#options-wrapper .modalContents .listContainer.leftColumn {
+  margin-top: 35px;
+  float: left;
+}
+
+#options-wrapper .modalContents .listContainer.leftColumn .globalTokenInputContainer {
+  overflow: auto;
+  height: auto;
+}
+
+#options-wrapper .modalContents .listContainer.leftColumn .globalTokenInputContainer input {
+  float: left;
+  width: 82%;
+  background: #ddd;
+}
+
+#options-wrapper .modalContents .listContainer.leftColumn .listButton {
+  margin: 5px 0;
+}
+
+#options-wrapper .modalContents .listContainer.rightColumn {
+  float: right;
+}
+
+#options-wrapper .modalContents .listContainer.rightColumn .clearSettingsCookieButton {
+  margin-bottom: 5px;
+}
+
+#options-wrapper .modalContents .listContainer .listItem {
+  margin: 10px 0;
+  position: relative;
+}
+
+#options-wrapper .modalContents .listContainer .input-number {
+  width: 45px;
+  background-color: #ddd;
+  border-radius: 2px;
+}
+
+#options-wrapper .modalContents .listContainer .checkboxContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+#options-wrapper .modalContents .listContainer .checkboxContainer {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#options-wrapper .modalContents .listContainer .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #ddd;
+}
+
+#options-wrapper .modalContents .listContainer .checkboxContainer input.active ~ .checkmark {
+  background-color: #0080ff;
+}
+
+#options-wrapper .modalContents .listContainer .checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+#options-wrapper .modalContents .listContainer .checkboxContainer input.active ~ .checkmark:after {
+  display: block;
+}
+
+#options-wrapper .modalContents .listContainer .checkboxContainer .checkmark:after {
+  left: 5px;
+  top: 2px;
+  width: 2px;
+  height: 7px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

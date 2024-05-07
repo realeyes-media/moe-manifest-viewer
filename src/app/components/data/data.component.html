@@ -1,0 +1,82 @@
+<div class="metricsWrapper">
+  <div *ngIf="viewerState.showVideo" class="section left">
+    <div class="sectionHeader">Stream Info</div>
+    <div class="playerState">Player state: {{ viewerState.playerState }}</div>
+    <app-metrics-dropdown
+      [metricType]="'VideoErrors'"
+      [metrics]="viewerState.videoErrors || []"
+      [currentMetric]="selectedVideoError"
+      (metricSelect)="onVideoErrorSelect($event)"
+    ></app-metrics-dropdown>
+    <div class="dividerDiv"></div>
+    <div class="currentTime">Current Time: {{ currentTime.toFixed(2) + 's' }}</div>
+    <div *ngIf="viewerState.currentLatency" class="currentTime">Live Latency {{ viewerState.currentLatency.toFixed(2) + 'ms' }}</div>
+    <div class="metricsStat">Bitrate: {{ viewerState.currentBitrate }}</div>
+    <div class="metricsStat">
+      Buffer: <span *ngIf="!viewerState.currentBuffer">N/A</span
+      ><span *ngIf="viewerState.currentBuffer">{{ viewerState.currentBuffer + 's' }}</span>
+    </div>
+    <div class="metricsStat">Frame Rate: {{ viewerState.currentFrameRate }}</div>
+    <div class="metricsStat">Dropped Frames: {{ droppedFramesFunction() }}</div>
+    <div class="metricsStat">ABS: {{ abs }}</div>
+    <div class="metricsStat">
+      Video Duration: <span *ngIf="!viewerState.videoDuration">N/A</span
+      ><span *ngIf="viewerState.videoDuration">{{ viewerState.videoDuration && viewerState.videoDuration.toFixed(2) }}s</span>
+    </div>
+    <div class="metricsStat">Codecs: {{ viewerState.currentCodecs }}</div>
+    <div class="metricsStat">Height: {{ viewerState.currentHeight }}</div>
+    <div class="metricsStat">Width: {{ viewerState.currentWidth }}</div>
+    <app-metrics-dropdown
+      [metricType]="'FragDifference'"
+      [metrics]="viewerState.fragDuration || []"
+      [currentMetric]="selectedFragDuration"
+      (metricSelect)="onFragDurationSelect($event)"
+    ></app-metrics-dropdown>
+    <div *ngIf="!(selectedPlayer === 'shaka' && type === 'dash' && viewerState.isLive === true)" class="input-checkbox">
+      <input type="checkbox" name="showChart" [(ngModel)]="showGraph" />
+      <label for="showChart">Show aggregate segment download times</label>
+    </div>
+  </div>
+  <div *ngIf="type === 'hls'" class="section right">
+    <div class="sectionHeader">Manifest Info</div>
+    <div *ngIf="segmentCount" class="metricsStat">Segment Count: {{ segmentCount }}</div>
+    <div class="currentTime">Manifest Duration: {{ manifestDuration && manifestDuration.toFixed(2) }}s</div>
+    <app-metrics-dropdown
+      [metricType]="'Discontinuities'"
+      [metrics]="discontinuities"
+      [currentMetric]="selectedDiscontinuity"
+      (metricSelect)="onDiscontinuitiesSelect($event)"
+    ></app-metrics-dropdown>
+    <div class="dividerDiv"></div>
+    <app-metrics-dropdown
+      [metricType]="'Pdt'"
+      [metrics]="pdt"
+      [currentMetric]="selectedPdt"
+      (metricSelect)="onPdtSelect($event)"
+    ></app-metrics-dropdown>
+    <div class="dividerDiv"></div>
+    <app-metrics-dropdown
+      [metricType]="'Ads'"
+      [metrics]="ads"
+      [currentMetric]="selectedAd"
+      (metricSelect)="onAdSelect($event)"
+    ></app-metrics-dropdown>
+    <div class="dividerDiv"></div>
+    <div class="alignmentStatus" *ngIf="levelAlignmentStatus">
+      Levels Status:
+      <span [class.metricsLink]="levelAlignmentStatus === 'Ready'" (click)="startAlignmentCheck()">
+        {{ levelAlignmentStatus }}
+      </span>
+      <span class="alignmentMessage metricsLink" *ngFor="let status of levelAlignmentMessages" (click)="loadLevel(status.url)">
+        {{ status.message }}
+      </span>
+    </div>
+  </div>
+  <div *ngIf="showGraph && viewerState.showVideo && viewerState.id">
+    <x-chartist
+      [type]="chart[viewerState.id]?.type"
+      [data]="chart[viewerState.id]?.data"
+      [options]="chart[viewerState.id]?.options"
+    ></x-chartist>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+@import '../../shared/utils/vars';
+
+.errorContainer {
+  padding: 5px;
+  .errTitle {
+    margin: 0;
+    padding: 15px 0;
+  }
+  .mixedContentContainer {
+    .link {
+      color: $link-color;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

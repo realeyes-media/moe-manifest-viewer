@@ -1,0 +1,19 @@
+<div class="view-container">
+  <div class="manifestsContainer">
+    <div class="cell" *ngFor="let viewer of viewers; let i = index" [style.width]="getViewerWidth(i) + '%'">
+      <app-manifest-viewer
+        [externalUrl]="viewer.url"
+        [id]="viewer.id"
+        [isOnlyViewer]="viewers.length === 1"
+        [viewerState]="viewer.viewerState"
+        [widthInPx]="getViewerWidthPx(i)"
+        [viewer]="viewer"
+        [viewers]="viewers"
+        (closeViewer)="onCloseRequest($event)"
+        (newViewerRequest)="addViewer($event, i)"
+      ></app-manifest-viewer>
+      <div class="divider right" *ngIf="i < viewers.length - 1" (mousedown)="onDividerMouseDown($event, i)"></div>
+      <div class="divider left" *ngIf="i > 0" (mousedown)="onDividerMouseDown($event, i - 1)"></div>
+    </div>
+  </div>
+</div>

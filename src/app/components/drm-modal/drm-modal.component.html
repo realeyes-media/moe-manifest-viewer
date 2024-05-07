@@ -1,0 +1,31 @@
+<div id="drm-wrapper">
+  <div class="drmHeading">
+    <span class="drmSideLabel">Play DRM Content </span>
+    <button id="close-drm" (click)="closeModal()">&times;</button>
+  </div>
+  <div class="modalContents">
+    <div class="urlInput">
+      <label
+        >DRM License URL:
+        <input class="drmInputs" type="text" [(ngModel)]="info.drmLicenseUrl" placeholder="Enter DRM License URL Here" />
+      </label>
+    </div>
+    <div class="authToken">
+      <label>Authorization: </label> <br />
+      <input type="text" class="drmInputs authInput" [(ngModel)]="info.headerName" placeholder="Enter Header Name Here" />
+      <input type="text" class="drmInputs authInput float-right" [(ngModel)]="info.headerValue" placeholder="Enter Header Value Here" />
+    </div>
+    <div class="drmType">
+      <label
+        >DRM Type:
+        <select class="drmTypeSelect" [(ngModel)]="info.drmType">
+          <option [value]="DRMType.NONE">NONE</option>
+          <option [value]="DRMType.WIDEVINE">WIDEVINE</option>
+          <option [value]="DRMType.PLAYREADY">PLAYREADY (DASH & Shaka only)</option>
+          <option [value]="DRMType.CLEAR_KEY">CLEAR KEY (Shaka only)</option>
+        </select>
+      </label>
+    </div>
+    <button class="getButton" [disabled]="!info.drmLicenseUrl" (click)="addDrm(info)">Add</button>
+  </div>
+</div>

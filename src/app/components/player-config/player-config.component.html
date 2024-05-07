@@ -1,0 +1,11 @@
+<div>
+  <textarea
+    class="options-modal-textarea no-resize"
+    type="text"
+    rows="12"
+    placeholder="Config JSON"
+    [(ngModel)]="customConfig"
+    value=""
+  ></textarea>
+  <button class="option-button" [disabled]="!customConfig" (click)="applyCustomPlayerConfig()">Apply Custom Config</button>
+</div>

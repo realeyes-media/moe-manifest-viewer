@@ -1,0 +1,26 @@
+@import '../../shared/utils/vars';
+
+.dot {
+  height: 12px;
+  width: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  &.pass {
+    background-color: $green-color;
+  }
+
+  &.replay {
+    background-color: orange;
+  }
+
+  &.rollback {
+    background-color: $dark-gold;
+  }
+
+  &.stall {
+    background-color: red;
+  }
+}

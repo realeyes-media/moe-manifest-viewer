@@ -1,0 +1,56 @@
+@import '../../shared/utils/vars.scss';
+
+.metricsWrapper {
+  .header {
+    margin: 0;
+    padding: 10px 0;
+  }
+  .sectionHeader {
+    font-weight: bold;
+  }
+  .metricList {
+    height: 20px;
+    .text {
+      float: left;
+    }
+  }
+  .right {
+    float: left;
+    max-width: 50%;
+    @media screen and (max-width: $singleViewerMetricDisplayBreakpoint) {
+      clear: both;
+    }
+    @media screen and (max-width: $singleViewerDisplayBreakPoint) {
+      float: left;
+      max-width: 50%;
+      clear: none !important;
+    }
+    @media screen and (max-width: $singleViewerMetricDisplaySmallScreen) {
+      clear: both !important;
+    }
+  }
+  .left {
+    float: left;
+    min-width: 50%;
+
+    .input-checkbox {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+  .dividerDiv {
+    clear: both;
+  }
+  .metricsLink {
+    cursor: pointer;
+    text-decoration: underline;
+    user-select: none;
+  }
+  .alignmentStatus {
+    .alignmentMessage {
+      display: block;
+      padding-left: 20px;
+    }
+  }
+}

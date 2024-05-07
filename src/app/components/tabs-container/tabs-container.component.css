@@ -1,0 +1,59 @@
+.tab {
+  overflow: hidden;
+  margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.tab .tablinks {
+  cursor: pointer;
+  -webkit-transition: 0.05s;
+  transition: 0.05s;
+  margin: 0px 12px 0px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  display: -webkit-inline-box;
+}
+
+.eachLink {
+  padding: 10px;
+}
+
+.eachLink:hover {
+  background-color: #e0e0e0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.active {
+  border-bottom: 1px solid black;
+  text-decoration: none;
+  height: 20px;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+}
+
+.dot.pass {
+  background-color: #99e699;
+}
+
+.dot.replay {
+  background-color: orange;
+}
+
+.dot.rollback {
+  background-color: darkgoldenrod;
+}
+
+.dot.stall {
+  background-color: red;
+}

@@ -1,0 +1,99 @@
+.iconWrapper {
+  padding: 5px;
+}
+
+.iconWrapper:hover .tooltipWrapper {
+  display: block;
+}
+
+.iconWrapper .tooltipWrapper {
+  display: none;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+  width: 0;
+  height: 0;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.iconWrapper .tooltipWrapper:hover {
+  display: block;
+}
+
+.iconWrapper .tooltipWrapper .tooltipText {
+  background-color: black;
+  border-radius: 6px;
+  color: #fdfdfd;
+  font-size: 11px;
+  padding: 5px;
+  max-width: 101px;
+  position: relative;
+  margin-left: 30px;
+}
+
+.iconWrapper .contents {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.iconWrapper .contents.iconActive {
+  color: green;
+}
+
+.iconWrapper .contents.iconError {
+  color: red;
+}
+
+.iconWrapper .contents .material-icons {
+  font-size: 18px;
+}
+
+.scrollingOptionsContainer {
+  position: absolute;
+  left: 30px;
+  z-index: 2;
+  font-size: 12px;
+  background-color: #fdfdfd;
+  width: 100px;
+  border: 2px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.scrollingOptionsContainer .scrollOption {
+  border-bottom: 1px solid #333;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.scrollingOptionsContainer .scrollOption:hover {
+  background-color: #ddd;
+}
+
+.scrollingOptionsContainer .scrollOption.currentOption {
+  background-color: #99e699 !important;
+}
+
+.pollingOptions {
+  position: absolute;
+  left: 30px;
+  z-index: 2;
+  font-size: 12px;
+  background-color: #fdfdfd;
+  width: 59px;
+  border: 2px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.pollingOptions .input-number {
+  width: 30px;
+  height: 9px;
+}
+
+.pollingOptions .checkbox {
+  position: absolute;
+  bottom: 12px;
+  height: 12px;
+  right: 6px;
+}

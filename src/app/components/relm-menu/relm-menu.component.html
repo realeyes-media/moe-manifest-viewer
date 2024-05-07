@@ -1,0 +1,27 @@
+<div id="relm-wrapper">
+  <div class="relmHeading">
+    <span class="relmSideLabel">Live Manifest</span>
+    <button id="closeRelm" (click)="close()">&times;</button>
+  </div>
+  <div class="modalContents">
+    <div class="urlInput">
+      <label>Manifest URL: </label>
+      <input class="relmInputs" type="text" [(ngModel)]="setManifestUrl" placeholder="Enter Set Level Manifest Url Here" />
+    </div>
+    <div class="authToken">
+      <label>Authorization token: </label>
+      <input class="authInput" type="text" class="relmInputs" [(ngModel)]="token" placeholder="Enter Authentication Token Here" />
+    </div>
+    <div class="startTime">
+      <label>Start time: </label>
+      <input type="number" style="background-color: #eee; width: 50px" [(ngModel)]="startTime" />
+    </div>
+    <div class="fileType">
+      <label>File type: </label>
+      <select name="fileType" style="background-color: #eee" [(ngModel)]="fileType">
+        <option ng-selected="true" value="m3u8">m3u8</option>
+      </select>
+    </div>
+    <button class="getButton" name="getRelm" (click)="createRelmUrl(setManifestUrl, token, startTime, fileType)">GET</button>
+  </div>
+</div>

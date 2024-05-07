@@ -1,0 +1,32 @@
+<div id="dashPlayerContainer" (mouseover)="toggleTopBar(true)" (mouseout)="toggleTopBar(false)">
+  <app-player-overlay
+    [hidden]="!showTopBar"
+    [muted]="muted || volume === 0"
+    [bitrates$]="bitratesList$"
+    [width]="width"
+    [currentBitrate]="currentBitrate"
+    [playerHeight]="height"
+    [version]="version"
+    [usingAbr]="player && player.getQualityFor('video')"
+    (bitrateSelect)="setQualityByBitrate($event)"
+    (autoSelect)="setABR()"
+    (toggleMute)="switchMuted($event)"
+  ></app-player-overlay>
+  <app-subtitles *ngIf="viewerState.showSubtitles" [viewerState]="viewerState"></app-subtitles>
+  <div class="holdTemp" #playerContainer>
+    <video
+      #video
+      class="video-player"
+      controls
+      autoplay
+      [muted]="muted"
+      (pause)="setPlayerState('paused')"
+      (playing)="setPlayerState('playing')"
+      (waiting)="setPlayerState('waiting')"
+      (seeking)="setPlayerState('seeking')"
+      (ended)="setPlayerState('ended')"
+      (durationchange)="onDurationChange($event)"
+      (volumechange)="onVolumeChange($event)"
+    ></video>
+  </div>
+</div>

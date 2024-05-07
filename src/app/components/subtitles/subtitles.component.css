@@ -1,0 +1,16 @@
+.subtitles {
+  position: absolute;
+  top: 70%;
+  width: 100%;
+  height: 10%;
+  min-height: 30px;
+  z-index: 1;
+  background: transparent;
+  color: #fdfdfd;
+  padding: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: auto;
+  white-space: pre-wrap;
+}

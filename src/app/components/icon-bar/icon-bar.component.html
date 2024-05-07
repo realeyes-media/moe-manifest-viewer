@@ -1,0 +1,167 @@
+<div class="bar" [ngClass]="{ showLargeMenu: showIconText }">
+  <div class="sidebarWrapper">
+    <div class="iconWrapper" (click)="explodeManifest()" *ngIf="viewerState.showExplode">
+      <em class="material-icons">&#xe02f;</em>
+      <span class="iconText">Explode Manifest</span>
+    </div>
+    <div class="iconWrapper" (click)="loadClicked()">
+      <em class="material-icons">autorenew</em>
+      <span class="iconText">Load</span>
+    </div>
+    <div class="iconWrapper" (click)="toggleDrmModal()">
+      <em class="material-icons" [class.iconActive]="appService.isDrmActive">&#xE897;</em>
+      <span class="iconText"> DRM </span>
+    </div>
+    <div class="iconWrapper" (click)="toggleSearch(!searchOpen)">
+      <em class="material-icons findInManifest">&#xE8B6;</em>
+      <span class="iconText">Find in Manifest</span>
+    </div>
+    <div class="iconWrapper" (click)="toggleHelp(!viewerState.showHelp)">
+      <em class="material-icons" [class.iconActive]="viewerState.showHelp">help</em>
+      <span class="iconText">Help <span *ngIf="viewerState.showHelp">&#9989;</span></span>
+    </div>
+    <div class="iconWrapper" (click)="saveCurrentViewer()">
+      <em
+        class="material-icons"
+        [class.iconActive]="storeViewerText === 'Stored ✅'"
+        [class.iconError]="storeViewerText === 'Error on Save'"
+        >save</em
+      >
+      <span class="iconText">{{ storeViewerText }}</span>
+    </div>
+    <div class="iconWrapper" (click)="copyText(currentUrl, $event)">
+      <em class="material-icons" [class.iconActive]="copyUrlText === 'Copy success ✅'" [class.iconError]="copyUrlText === 'Copy Failed ❎'"
+        >&#xE14D;</em
+      >
+      <span class="iconText">{{ keyboardService.shiftActive ? shiftCopyUrlText : copyUrlText }}</span>
+    </div>
+    <div class="iconWrapper" (click)="copyManifest()">
+      <em
+        class="material-icons"
+        [class.iconActive]="copyManifestText === 'Copy success ✅'"
+        [class.iconError]="copyManifestText === 'Copy Failed ❎'"
+        >&#xE85D;</em
+      >
+      <span class="iconText">{{ copyManifestText }}</span>
+    </div>
+    <div class="iconWrapper" (click)="copyPermalinkUrl()">
+      <em
+        class="material-icons"
+        [class.iconActive]="copyPermalinkText === 'Copy success ✅'"
+        [class.iconError]="copyPermalinkText === 'Copy Failed ❎'"
+        >&#xE8A7;</em
+      >
+      <span class="iconText">{{ copyPermalinkText }}</span>
+    </div>
+    <div class="iconWrapper" (click)="openDemoPage()">
+      <em class="material-icons">&#xE86D;</em>
+      <span class="iconText">Open Demo Page</span>
+    </div>
+    <div class="iconWrapper" (click)="setScrollingShow(!showScrollingOptions)" (clickOutside)="setScrollingShow(false)">
+      <div class="scrollingOptionsContainer" *ngIf="showScrollingOptions">
+        <div class="scrollingOptions">
+          <div [class.currentOption]="scrolling === 'none'" class="scrollOption" (click)="setScrolling(ScrollTypes.NONE)">None</div>
+          <div [class.currentOption]="scrolling === 'tailManifest'" class="scrollOption" (click)="setScrolling(ScrollTypes.TAIL_MANIFEST)">
+            Tail Manifest
+          </div>
+          <div [class.currentOption]="scrolling === 'autoScroll'" class="scrollOption" (click)="setScrolling(ScrollTypes.AUTO_SCROLL)">
+            Auto Scroll
+          </div>
+        </div>
+        <i class="material-icons" [class.iconActive]="scrolling === 'tailManifest' || scrolling === 'autoScroll'">low_priority</i>
+        <span class="iconText">Scrolling</span>
+      </div>
+      <em class="material-icons" [class.iconActive]="scrolling === 'tailManifest' || scrolling === 'autoScroll'">low_priority</em>
+      <span class="iconText">Scrolling</span>
+    </div>
+    <div class="iconWrapper" (click)="toggleVideo(!viewerState.showVideo)" *ngIf="type === 'hls' || type === 'dash' || type === 'vtt'">
+      <em class="material-icons" [class.iconActive]="viewerState.showVideo">&#xE333;</em>
+      <span class="iconText">Show Video <span *ngIf="viewerState.showVideo">&#9989;</span></span>
+    </div>
+    <div
+      class="iconWrapper"
+      (click)="toggleSubtitles(!viewerState.showSubtitles)"
+      *ngIf="viewerState.showVideo && viewerState.subtitles && viewerState.subtitles.length"
+    >
+      <em class="material-icons" [class.iconActive]="viewerState.showSubtitles">&#xe01c;</em>
+      <span class="iconText">Show Subtitles <span *ngIf="viewerState.showSubtitles">&#9989;</span></span>
+    </div>
+    <div class="iconWrapper" (click)="toggleHls(!useNative)" *ngIf="possibleNative">
+      <img src="./../../../assets/hls_Fz3_icon.ico" />
+      <span class="iconText">Use Hls.js <span app-player*ngIf="!useNative">&#9989;</span></span>
+    </div>
+    <div class="iconWrapper" (click)="toggleCMCD(!viewerState.showCMCD)">
+      <em class="material-icons" [class.iconActive]="viewerState.showCMCD">send</em>
+      <span class="iconText">Show CMCD<span *ngIf="viewerState.showCMCD">&#9989;</span></span>
+    </div>
+    <div class="iconWrapper" (click)="toggleMetrics(!viewerState.showMetrics)">
+      <em class="material-icons" [class.iconActive]="viewerState.showMetrics">bar_chart</em>
+      <span class="iconText">Show Metrics<span *ngIf="viewerState.showMetrics">&#9989;</span></span>
+    </div>
+    <div class="iconWrapper" *ngIf="isFragmentToInspect()" (click)="toggleSegmentInspector(!viewerState.segmentInspector.show)">
+      <em class="material-icons" [class.iconActive]="viewerState.segmentInspector.show">&#xe417;</em>
+      <span class="iconText">Segment Inspector <span *ngIf="viewerState.segmentInspector.show">&#9989;</span></span>
+    </div>
+    <div class="iconWrapper" (click)="togglePlayerConfig(!viewerState.showPlayerConfig)">
+      <em class="material-icons" [class.iconActive]="viewerState.showPlayerConfig">settings</em>
+      <span class="iconText">Show Player Config <span *ngIf="viewerState.showPlayerConfig">&#9989;</span></span>
+    </div>
+    <div
+      class="iconWrapper"
+      (click)="toggleStallDetector(!viewerState.showStallDetector)"
+      *ngIf="type === 'hls' && viewerState.isMasterOpen"
+    >
+      <em class="material-icons" [class.iconActive]="viewerState.showStallDetector">show_chart</em>
+      <span class="iconText">Show Stall-Detector <span *ngIf="viewerState.showStallDetector">&#9989;</span></span>
+    </div>
+    <div class="iconWrapper" (click)="toggleScteDisplay(!viewerState.showScteDisplay)">
+      <em class="material-icons" [class.iconActive]="viewerState.showScteDisplay">&#xe417;</em>
+      <span class="iconText">Show SCTE <span *ngIf="viewerState.showScteDisplay">&#9989;</span></span>
+    </div>
+    <div
+      class="iconWrapper"
+      (click)="togglePlayerLogs(!viewerState.showPlayerLogs)"
+      *ngIf="!useNative && viewerState.showVideo && selectedPlayer === 'hls'"
+    >
+      <em class="material-icons" [class.iconActive]="viewerState.showPlayerLogs">receipt</em>
+      <span class="iconText">Show Player Logs <span *ngIf="viewerState.showPlayerLogs">&#9989;</span></span>
+    </div>
+    <div class="iconWrapper" (click)="toggleUseGlobalToken(!viewerState.globalTokenActive)">
+      <em class="material-icons" [class.iconActive]="viewerState.globalTokenActive">&#xE0DA;</em>
+      <span class="iconText">Global Token <span *ngIf="viewerState.globalTokenActive">&#9989;</span></span>
+    </div>
+    <div class="iconWrapper" (click)="setPollingShow(!showPollingOptions, $event)">
+      <em class="material-icons" [class.iconActive]="pollingActive">swap_calls</em>
+      <span class="iconText">Automatic Polling</span>
+    </div>
+    <div class="pollContainer" (clickOutside)="closePollingShow(false)" *ngIf="showPollingOptions">
+      <div class="pollingOptions">
+        <span id="sideLabel"
+          >Poll every
+          <input
+            class="input-number"
+            #pollInput
+            type="number"
+            autofocus="on"
+            autocomplete="off"
+            (change)="setPollIntervalTime(pollInput.value)"
+            [value]="pollIntervalTime" />seconds
+          <input class="checkbox" [checked]="pollingActive" type="checkbox" (click)="togglePolling(!pollingActive)"
+        /></span>
+      </div>
+    </div>
+    <div class="iconWrapper" (click)="toggleXhrCredentials(!viewerState.xhrCredentials)">
+      <em class="material-icons" [class.iconActive]="viewerState.xhrCredentials">&#xE897;</em>
+      <span class="iconText">XHR Credentials <span *ngIf="viewerState.xhrCredentials">&#9989;</span></span>
+    </div>
+    <div class="iconWrapper" (click)="clearViewer()">
+      <em class="material-icons" [class.iconActive]="clearSessionText === 'Clear success ✅'">&#xE033;</em>
+      <span class="iconText">{{ clearSessionText }}</span>
+    </div>
+    <div class="iconWrapper" (click)="openFeedbackPage()">
+      <em class="material-icons">feedback</em>
+      <span class="iconText">Feedback</span>
+    </div>
+  </div>
+  <div class="build-info">Version:&nbsp;{{ version }}</div>
+</div>

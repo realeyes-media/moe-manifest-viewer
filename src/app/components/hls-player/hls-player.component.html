@@ -1,0 +1,33 @@
+<div class="holdTemp" (mouseover)="showMenu(true)" (mouseout)="showMenu(true)">
+  <app-player-overlay
+    *ngIf="!useNative && menuVisible"
+    [bitrates$]="bitratesList$"
+    [playerHeight]="height"
+    [muted]="muted || volume === 0"
+    [currentBitrate]="(currentRendition && currentRendition.bitrate) || 0"
+    [width]="width"
+    [version]="version"
+    [usingAbr]="hls && hls.autoLevelEnabled"
+    (bitrateSelect)="onRenditionClick($event.bitrate, $event.mouseEvent)"
+    (autoSelect)="switchToAbr()"
+    (toggleMute)="switchMuted($event)"
+  ></app-player-overlay>
+  <app-subtitles [viewerState]="viewerState"></app-subtitles>
+  <div class="hlsPlayerContainer" #playerContainer>
+    <video
+      #video
+      [attr.id]="id"
+      class="video-player"
+      controls
+      [muted]="muted"
+      (pause)="setPlayerState('paused')"
+      (playing)="setPlayerState('playing')"
+      (waiting)="setPlayerState('waiting')"
+      (seeking)="setPlayerState('seeking')"
+      (ended)="setPlayerState('ended')"
+      (durationchange)="onDurationChange($event)"
+      (timeupdate)="onTimeUpdate($event)"
+      (volumechange)="onVolumeChange($event)"
+    ></video>
+  </div>
+</div>

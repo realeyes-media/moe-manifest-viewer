@@ -1,0 +1,44 @@
+table,
+th,
+td {
+  border: 1px solid black;
+  empty-cells: hide;
+  font-weight: bold;
+  font-size: 11px;
+  height: 29px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.subset {
+  background-color: #696969;
+  color: white;
+  height: 30px;
+}
+
+.helpTitle {
+  height: 30px;
+  font-size: 16px;
+  background-color: #696969;
+  color: white;
+}
+
+.closeButton {
+  cursor: pointer;
+  float: right;
+  margin-left: -80px;
+  font-size: 12px;
+}
+
+.align {
+  text-align: left;
+  padding-left: 5px;
+}
+
+.addPadding {
+  padding-right: 5px;
+  padding-left: 5px;
+}

@@ -1,0 +1,296 @@
+<div class="manifest-container">
+  <div class="manifest-top" [class.closedHeader]="hideManifestTopInputs">
+    <div class="topRow">
+      <div class="topContainerWrapper">
+        <div class="topContainer">
+          <div class="topBar">
+            <button (click)="toggleMenu()" class="menuButton"><i class="material-icons">&#xe3c7;</i></button>
+            <div class="topLeft">
+              <span *ngIf="!isOnlyViewer" (click)="closeSession()" class="closeButton">&times;</span>
+              <span (click)="loadBlankViewer()" class="closeButton">+</span>
+              <input
+                class="manifestTitle"
+                *ngIf="widthInPx >= 295"
+                type="text"
+                (keyup)="onManifestTitleKeyUp($event)"
+                [(ngModel)]="viewerState.name"
+                placeholder="Name Session"
+                autocomplete="off"
+              />
+            </div>
+            <div class="topRight" (clickOutside)="toggleOptionsMenu(false)" [class.singleLineView]="widthInPx > 630">
+              <div class="tab-dropdown-wrapper" [class.setLevelActive]="setManifestUrl && setManifestUrl === currentUrl">
+                <i *ngIf="widthInPx <= 630" class="material-icons dropdownIcon" (click)="toggleOptionsMenu(!showOptionsMenu)"> &#xe5d3; </i>
+                <div
+                  class="tab-dropdowns-container"
+                  [class.closed]="!showOptionsMenu && widthInPx <= 630"
+                  [class.singleLineView]="widthInPx > 630"
+                >
+                  <div class="toggleManifestHeaderIcon tab-dropdown" (click)="toggleManifestHeader(!hideManifestTopInputs)">
+                    <span *ngIf="widthInPx <= 630" class="collapseText">{{
+                      hideManifestTopInputs ? 'EXPAND   INPUTS' : 'COLLAPSE INPUTS'
+                    }}</span
+                    ><i class="material-icons collapseIcon" [class.rotated]="hideManifestTopInputs" *ngIf="widthInPx > 630">expand_more</i>
+                  </div>
+                  <div class="response tab-dropdown" [class.highlight]="resChange" [class.highlightError]="resErrorChange">
+                    <span>{{ res.status }} {{ res.statusText }}</span>
+                  </div>
+                  <div *ngIf="type === 'dash'" class="tab-dropdown">
+                    <div class="dashDropdown" *ngIf="bandwidths && bandwidths.length">
+                      <div class="dropdownContainer">
+                        <app-bitrate-dropdown
+                          [auto]="false"
+                          [bitrates]="dashBitrates"
+                          [currentBitrate]="currentBandwidth"
+                          (bitrateSelect)="onDropdownClick($event, 0)"
+                        ></app-bitrate-dropdown>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="type === 'hls' && bandwidths && bandwidths.length" class="tab-dropdown">
+                    <div *ngFor="let level of bandwidths; let i = index" class="eachTabDropdown">
+                      <div class="tabSetText">{{ alphabet[i] }}:</div>
+                      <div class="dropdownContainer" [style.z-index]="bandwidths.length - i + 1">
+                        <app-bitrate-dropdown
+                          [auto]="false"
+                          [bitrates]="level"
+                          [currentBitrate]="activeRedundancy === i ? activeBandwidth : null"
+                          (bitrateSelect)="onDropdownClick($event, i)"
+                        ></app-bitrate-dropdown>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="
+                      (type === 'hls' && setManifestUrl && setManifestUrl !== currentUrl) ||
+                      (type === 'vtt' && masterVttManifest.url && masterVttManifest.url !== currentUrl)
+                    "
+                    (click)="onMasterClick()"
+                    class="tab-dropdown"
+                  >
+                    <button class="setLevelButton">Master</button>
+                  </div>
+                  <div class="tab-dropdown">
+                    <div class="playerDropdown">
+                      <div class="dropdownContainer">
+                        <app-player-dropdown
+                          (playerSelect)="playerSelector($event)"
+                          [streamType]="type"
+                          [selectedPlayer]="selectedPlayer"
+                        ></app-player-dropdown>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearBoth"></div>
+    <div [class.noHeight]="hideManifestTopInputs" class="inputsRow">
+      <input
+        [(ngModel)]="currentUrl"
+        #manifestUrlInput
+        type="text"
+        placeholder="Enter Manifest URL"
+        (keydown)="onEitherInputKeydown($event)"
+        style="width: 100%"
+        list="stream-manifest-urls"
+        (click)="onClickUrlInput($event)"
+        (clickOutside)="onClickOutsideUrlInput($event)"
+        autocomplete="off"
+      />
+      <div class="viewerDropdownContainer">
+        <app-viewer-dropdown [show]="showInputDropdown" (loadStoredViewer)="loadStoredViewer($event)"></app-viewer-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <div class="viewerContents" [class.moveContent]="toggleValue" [class.closedHeader]="hideManifestTopInputs">
+    <div class="manifestTools">
+      <app-icon-bar
+        [viewerState]="viewerState"
+        [searchOpen]="searchOpen"
+        [id]="id"
+        [setManifestUrl]="setManifestUrl"
+        [currentUrl]="currentUrl"
+        [params]="params"
+        [manifest]="manifest"
+        [generatePermalinkUrl]="generatePermalinkUrl"
+        [type]="type"
+        [selectedPlayer]="selectedPlayer"
+        [scrolling]="scrolling"
+        [possibleNative]="possibleNative"
+        [pollingActive]="pollingActive"
+        [useNative]="useNative"
+        [pollIntervalTime]="pollIntervalTime"
+        [showIconText]="toggleValue"
+        (onScrollingSet)="setScrolling($event)"
+        (onLoadClicked)="onLoadClicked()"
+        (onToggleSearch)="toggleSearch($event)"
+        (onToggleVideo)="toggleVideo($event)"
+        (onToggleSubtitles)="toggleSubtitles($event)"
+        (onToggleHelp)="toggleHelp($event)"
+        (onToggleUseNative)="toggleHls($event)"
+        (onToggleMetrics)="toggleMetrics($event)"
+        (onToggleCMCD)="toggleCMCD($event)"
+        (onTogglePlayerConfig)="togglePlayerConfig($event)"
+        (onToggleSegmentInspector)="toggleSegmentInspector($event)"
+        (onToggleScteDisplay)="toggleScteDisplay($event)"
+        (onToggleStallDetector)="toggleStallDetector($event)"
+        (onTogglePlayerLogs)="togglePlayerLogs($event)"
+        (onToggleUseGlobalToken)="onUseGlobalTokenChange($event)"
+        (onTogglePolling)="setPollingActive($event)"
+        (onSetPollIntervalTime)="onIntervalChange($event)"
+        (onToggleXhrCredentials)="withCredentialsChange($event)"
+        (onClearViewer)="clearViewer()"
+        (newVariantsRequest)="toggleVariantsViewer()"
+      ></app-icon-bar>
+    </div>
+    <div class="help-container" *ngIf="viewerState.showHelp">
+      <app-help [viewerState]="viewerState" (onToggleHelp)="toggleHelp($event)" *ngIf="viewerState.showHelp"></app-help>
+    </div>
+    <div
+      class="manifest-text-container"
+      [class.showVideo]="
+        viewerState.showVideo || viewerState.showMetrics || viewerState.showStallDetector || viewerState.segmentInspector.show
+      "
+      (mouseover)="copyStreamViewer(true)"
+      [class.onlyViewer]="isOnlyViewer"
+      [class.menuOpen]="toggleValue"
+      (mouseout)="copyStreamViewer(false)"
+    >
+      <div
+        class="search"
+        [class.errored]="invalidRegEx"
+        [hidden]="!searchOpen || !((manifest && manifest.length) || (segments && segments.length))"
+      >
+        <div class="searchComponents">
+          <div class="inputContainer">
+            <input
+              #search
+              class="searchInput"
+              type="text"
+              (keyup)="searchInputChange($event, search.value)"
+              placeholder="Find in manifest"
+              autocomplete="off"
+            />
+          </div>
+          <div class="searchFields">{{ getCurrentSearchIndex() + 1 || 0 }} of {{ (searchMatches && searchMatches.length) || 0 }}</div>
+        </div>
+      </div>
+      <div class="textComponentContainer" [class.searchOpen]="searchOpen">
+        <div *ngIf="type === VideoPlayers.DASH_PLAYER" class="manifest-view-swapper">
+          <button (click)="onSwapManifestView('manifest')" [class.buttonNotSelected]="manifestView != 'manifest'">Manifest</button>
+          <button (click)="onSwapManifestView('segments')" [class.buttonNotSelected]="manifestView != 'segments'">Segments</button>
+        </div>
+        <app-error-display
+          *ngIf="inErrorState"
+          class="fill-parent"
+          [manifestResponse]="res"
+          [generatePermalinkUrl]="generatePermalinkUrl"
+        ></app-error-display>
+        <app-text
+          *ngIf="!inErrorState"
+          class="fill-parent"
+          [type]="type"
+          [manifest$]="manifest$"
+          [segments$]="segments$"
+          [subtitles$]="subtitles$"
+          [scrollInto$]="scrollInto$"
+          [viewerState]="viewerState"
+          [useNative]="useNative"
+          [activeSearchTerm]="activeSearchTerm"
+          [isSetManifest]="setManifestUrl === currentUrl"
+          [manifestView]="manifestView"
+          (setScrolling)="setScrolling($event)"
+          (bitrateSelect)="onDropdownClick($event, 0)"
+          (showVideoEmitter)="toggleVideo($event)"
+          (clearManifestRequest)="clearManifest()"
+          (newViewerRequest)="openNewViewer($event)"
+          (urlUpdate)="updateStreamUrl($event)"
+          (onToggleSegmentInspector)="toggleSegmentInspectorTool($event)"
+        ></app-text>
+      </div>
+    </div>
+    <div
+      class="metricsAndVideo"
+      *ngIf="
+        viewerState.showMetrics ||
+        viewerState.showCMCD ||
+        viewerState.showPlayerConfig ||
+        viewerState.segmentInspector.show ||
+        viewerState.showStallDetector ||
+        viewerState.showVideo ||
+        viewerState.showScteDisplay ||
+        viewerState.showSubtitles
+      "
+      [class.onlyViewer]="isOnlyViewer"
+    >
+      <div
+        class="metricsPanel"
+        *ngIf="
+          viewerState.showMetrics ||
+          viewerState.showCMCD ||
+          viewerState.showPlayerConfig ||
+          viewerState.segmentInspector.show ||
+          viewerState.showStallDetector ||
+          viewerState.showPlayerLogs ||
+          viewerState.showScteDisplay ||
+          viewerState.showSubtitles
+        "
+        [class.videoShowing]="viewerState.showVideo"
+        [class.onlyViewer]="isOnlyViewer"
+      >
+        <div class="metricsContainer">
+          <app-info-container
+            [type]="type"
+            [selectedPlayer]="selectedPlayer"
+            [manifest]="manifest"
+            [viewerReset$]="viewerReset$"
+            [viewerState]="viewerState"
+            [manifestUpdate$]="manifestUpdate$"
+            [useNative]="useNative"
+            [isOnlyViewer]="isOnlyViewer"
+            [id]="id"
+            (seek)="scrollToObject($event)"
+            (loadLevelRequest)="onPlayerBandwidthSelect($event, '')"
+          ></app-info-container>
+        </div>
+      </div>
+      <div
+        class="videoPanel"
+        [class.onlyViewer]="isOnlyViewer"
+        [class.metricsShowing]="viewerState.showMetrics || viewerState.showStallDetector"
+        *ngIf="viewerState.showVideo"
+      >
+        <div class="videoPlayerContainer">
+          <app-dash-player
+            *ngIf="type === 'dash' && selectedPlayer === VideoPlayers.DASH_PLAYER"
+            (onBitrateList)="getBitrateList($event)"
+            [viewerState]="viewerState"
+            [width]="widthInPx"
+            (urlChange)="onPlayerBandwidthSelect($event.url, $event.updateBit)"
+          ></app-dash-player>
+          <app-hls-player
+            [id]="id"
+            [useNative]="useNative"
+            [width]="widthInPx"
+            [viewerState]="viewerState"
+            (urlChange)="onPlayerBandwidthSelect($event.url, $event.updateBit)"
+            *ngIf="selectedPlayer === VideoPlayers.HLS_PLAYER && type == 'hls' && hlsIsSupported"
+          ></app-hls-player>
+          <p *ngIf="type === 'hls' && !hlsIsSupported">Hls.js is not supported...</p>
+          <app-shaka-player
+            (onBitrateList)="getBitrateList($event)"
+            [viewerState]="viewerState"
+            [width]="widthInPx"
+            *ngIf="selectedPlayer === VideoPlayers.SHAKA_PLAYER"
+          ></app-shaka-player>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

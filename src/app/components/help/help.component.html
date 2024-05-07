@@ -1,0 +1,169 @@
+<table cellpadding="10">
+  <tr>
+    <th class="helpTitle" colspan="6">Help <span class="closeButton" (click)="closeHelp(!viewerState.showHelp)">Close</span></th>
+  </tr>
+  <tr>
+    <th colspan="6">
+      <app-tabs-container
+        class="tabContainer"
+        (setActiveTab)="selectActiveTab($event)"
+        (updateTabs)="updateTabs($event)"
+        [viewerState]="viewerState"
+        *ngIf="viewerState.showHelp"
+      >
+        <app-tab tabTitle="{{ tabName.HOTKEYS }}">
+          <table>
+            <thead>
+              <tr>
+                <th class="subset">Hot Keys</th>
+                <th class="subset">Use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ctrl or cmd key while clicking</td>
+                <td class="align">Opens manifest link in new viewer</td>
+              </tr>
+              <tr>
+                <td>Shift + Click</td>
+                <td class="align">On a stream level manifest in the master level to download it</td>
+              </tr>
+              <tr>
+                <td>Shift + Click</td>
+                <td class="align">On the copy url icon to uri encode it before copying</td>
+              </tr>
+              <tr>
+                <td>t</td>
+                <td class="align">Opens up new viewer</td>
+              </tr>
+              <tr>
+                <td>Shift + t</td>
+                <td class="align">Opens the last closed viewer, until there are none left</td>
+              </tr>
+            </tbody>
+          </table>
+        </app-tab>
+
+        <app-tab tabTitle="{{ tabName.URLVARS }}">
+          <table>
+            <thead>
+              <tr>
+                <th class="subset">Variable 0=False 1=True</th>
+                <th class="subset">Use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>showVideo=1</td>
+                <td class="align">Boolean: Turns Video on</td>
+              </tr>
+              <tr>
+                <td>muted=1</td>
+                <td class="align">Boolean: Mutes all Videos</td>
+              </tr>
+              <tr>
+                <td>showMetrics=1</td>
+                <td class="align">Boolean: Turns Metric Panel on</td>
+              </tr>
+              <tr>
+                <td>xhrCredentials=1</td>
+                <td class="align">Boolean: Turns XHRCredentials on</td>
+              </tr>
+              <tr>
+                <td>automaticPolling=1</td>
+                <td class="align">Boolean: Turns Automatic Polling on</td>
+              </tr>
+              <tr>
+                <td>pollInterval=4</td>
+                <td class="align">Number: Sets number of seconds for Automatic Polling</td>
+              </tr>
+              <tr>
+                <td>showStallDetector=1</td>
+                <td class="align">Boolean: Turns Stall Detector Panel on</td>
+              </tr>
+              <tr>
+                <td>globalToken=1</td>
+                <td class="align">Boolean: Turns Global Token on</td>
+              </tr>
+              <tr>
+                <td>useHlsjs=1</td>
+                <td class="align">Boolean: Turns on Hls.js for Safari and Edge</td>
+              </tr>
+              <tr>
+                <td>showHlsLogs=1</td>
+                <td class="align">Boolean: Turns Hls Logs Panel on</td>
+              </tr>
+              <tr>
+                <td>scrolling=scrolling options</td>
+                <td class="align">String: 'autoScroll', 'tailManifest', 'none'. Sets scrolling options to what you pick</td>
+              </tr>
+              <tr>
+                <td class="addPadding">url=http%3A%2F%2Fstream.m3u8</td>
+                <td class="align">URI encoded url to load initally</td>
+              </tr>
+              <tr>
+                <td>relm=1</td>
+                <td class="align">Boolean: Shows button to load manifest in RELM</td>
+              </tr>
+            </tbody>
+          </table>
+        </app-tab>
+
+        <app-tab tabTitle="{{ tabName.FEATURES }}">
+          <table>
+            <thead>
+              <tr>
+                <th class="subset">Feature</th>
+                <th class="subset">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Metrics Panel</td>
+                <td class="align">Turns on panel that will display the video metrics such as bitrate, discontinuities, ads...etc.</td>
+              </tr>
+              <tr>
+                <td>XHR Credentials</td>
+                <td class="align">Adds the withCredentials attribute on the XML HTTP Requests for manifests</td>
+              </tr>
+              <tr>
+                <td>Automatic Polling</td>
+                <td class="align">Polls the manifest in the viewer every `x` seconds where `x` is the pollInterval</td>
+              </tr>
+              <tr>
+                <td>Poll Interval</td>
+                <td class="align">Interval to poll when Automatic Polling is turned on, (in seconds)</td>
+              </tr>
+              <tr>
+                <td>Stall Detector</td>
+                <td class="align">Turns on panel that identifies if the stream level manifest are not updating as expected</td>
+              </tr>
+              <tr>
+                <td>Global Token</td>
+                <td class="align">Ability to add a global token that is saved and can be reused</td>
+              </tr>
+              <tr>
+                <td>Use Hls.js</td>
+                <td class="align">Playback via hls.js, dash.js, or native player</td>
+              </tr>
+              <tr>
+                <td>Show Hls Logs</td>
+                <td class="align">Turns on panel that will display Hls Logs</td>
+              </tr>
+            </tbody>
+          </table>
+        </app-tab>
+        <app-tab tabTitle="{{ tabName.TERMSOFUSE }}">
+          <table>
+            <tbody>
+              MOE Viewer is in Early Access Preview - access to this service is given on a trial, as is basis, and may be revoked at any
+              time. The products will change before going into production, and may be a part of a paid service in the future. All services
+              are provided as-is; RealEyes does not guarantee any level of service at this time, and provides no warranty. As Early Access
+              software, there will be bugs, issues, and outages.
+            </tbody>
+          </table>
+        </app-tab>
+      </app-tabs-container>
+    </th>
+  </tr>
+</table>

@@ -1,0 +1,101 @@
+<div (mousewheel)="onMouseWheel($event)" (DOMMouseScroll)="onMouseWheel($event)" class="manifest-text" id="stream-manifest-container">
+  <virtual-scroll
+    id="vscroll"
+    *ngIf="type === 'hls'"
+    [asyncItems]="manifest$"
+    (update)="onVirtualScrollUpdate($event)"
+    [scrollAnimationTime]="250"
+    [childHeight]="13"
+  >
+    <div *ngFor="let line of viewPortItems; let i = index">
+      <div
+        *ngIf="!line.stream"
+        class="fragLine extInf"
+        (click)="onLineClick(line, $event)"
+        [class.highlighted]="line.highlight && viewerState.showVideo"
+        [class.scteTag]="line.scteData"
+        [innerHTML]="line.str | manifestText: activeSearchTerm:line"
+      ></div>
+      <div *ngIf="line.stream" class="fragLine lineStream">
+        <button
+          title="Inspect fragment"
+          class="inspect-fragment"
+          *ngIf="!isSetManifest && line.stream && !useNative"
+          (click)="inspectFragment(viewerState.segmentInspector.show, line.url)"
+          [class.active]="viewerState.segmentInspector.url === line.url"
+        >
+          <i class="material-icons eye-icon">&#xe417;</i>
+        </button>
+        <div
+          *ngIf="!isSetManifest && line.stream && !useNative && viewerState.showVideo"
+          class="fragStatusDot url"
+          [class.fragLoaded]="line.loadStatus === 'fragLoaded'"
+          [class.fragLoading]="line.loadStatus === 'fragLoading'"
+          [class.fragErrored]="line.loadStatus === 'fragErrored'"
+          (click)="downloadAndCopyFrag(line.url, $event)"
+        >
+          <div class="tooltipWrapper">
+            <span class="tooltipText">Download and Copy Url</span>
+            <span *ngIf="line.loadStatus === 'fragLoaded'" class="tooltipText">Download time: {{ line.loadTime }} ms.</span>
+          </div>
+        </div>
+        <span
+          [class.highlighted]="line.highlight && viewerState.showVideo"
+          class="url"
+          (click)="onLineClick(line, $event)"
+          [innerHTML]="line.str | manifestText: activeSearchTerm"
+        ></span>
+      </div>
+    </div>
+  </virtual-scroll>
+  <virtual-scroll
+    id="vscroll"
+    *ngIf="type === 'dash' && manifestView === 'manifest'"
+    [asyncItems]="manifest$"
+    (update)="onVirtualScrollUpdate($event)"
+    [scrollAnimationTime]="250"
+    class="horizontalScroll"
+  >
+    <div *ngFor="let line of viewPortItems; let i = index">
+      <pre [innerHTML]="line.str | linkify | manifestText: activeSearchTerm:line"></pre>
+    </div>
+  </virtual-scroll>
+  <virtual-scroll
+    id="vscroll"
+    *ngIf="type === VideoPlayers.DASH_PLAYER && manifestView === 'segments'"
+    [asyncItems]="segments$"
+    (update)="onVirtualScrollUpdate($event)"
+    [scrollAnimationTime]="250"
+  >
+    <div
+      *ngFor="let segment of viewPortItems"
+      class="segmentContainer"
+      [class.playingSegment]="viewerState.currentTime > segment.startTime && viewerState.currentTime < segment.startTime + segment.duration"
+    >
+      <div
+        class="segmentUrl"
+        (click)="onSegmentUrlClick(segment.startTime)"
+        [innerHTML]="segment.url | manifestText: activeSearchTerm:segment"
+      ></div>
+      <div
+        class="loadStatusDot"
+        [class.loadedColor]="segment.loadStatus === 'loaded'"
+        [class.loadingColor]="segment.loadStatus === 'loading'"
+      ></div>
+      <div class="segmentDuration">Duration: {{ segment.duration }}</div>
+      <div class="segmentQuality">QualityIndex: {{ segment.qualityIndex }}</div>
+    </div>
+  </virtual-scroll>
+  <virtual-scroll
+    id="vscroll"
+    *ngIf="type === 'vtt'"
+    [asyncItems]="subtitles$"
+    (update)="onVirtualScrollUpdate($event)"
+    [scrollAnimationTime]="250"
+    [childHeight]="13"
+  >
+    <div *ngFor="let subtitle of viewPortItems" class="subtitleContainer">
+      <div>{{ subtitle.str }}</div>
+    </div>
+  </virtual-scroll>
+</div>

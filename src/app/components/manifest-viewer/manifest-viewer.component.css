@@ -1,0 +1,580 @@
+.noHeight {
+  height: 0 !important;
+  -webkit-transition: height linear 0.05s;
+  transition: height linear 0.05s;
+}
+
+.dropDown {
+  margin: 5px;
+  float: right;
+}
+
+.manifest-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.manifest-top {
+  height: calc(55px + 36px);
+  -webkit-transition: height linear 0.05s;
+  transition: height linear 0.05s;
+}
+
+.manifest-top.closedHeader {
+  height: 36px;
+  -webkit-transition: height linear 0.05s;
+  transition: height linear 0.05s;
+}
+
+.manifest-top .topRow {
+  position: relative;
+  height: 36px;
+  width: 100%;
+}
+
+.manifest-top .topRow .topContainerWrapper {
+  height: 100%;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer {
+  height: 100%;
+  position: relative;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topLeft {
+  position: relative;
+  float: left;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topLeft .manifestTitle {
+  height: 33px;
+  background-color: #eee;
+  color: #333;
+  font-size: 16px;
+  -webkit-transition: width 0.05s;
+  transition: width 0.05s;
+  font-family: 'Lucida Console', Monaco, monospace;
+  text-overflow: ellipsis;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topLeft .manifestTitle.singleLineView {
+  max-width: 252px;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topLeft .manifestTitle:focus {
+  border-bottom: 1px dotted black;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topLeft .closeButton {
+  cursor: pointer;
+  background-color: rgba(102, 102, 102, 0.34);
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 0 4px;
+  margin: 1px;
+  -webkit-transition: opacity linear 0.05s;
+  transition: opacity linear 0.05s;
+  margin: 9px 1px;
+  display: block;
+  float: left;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topLeft .closeButton:hover {
+  -webkit-transition: opacity linear 0.05s;
+  transition: opacity linear 0.05s;
+  opacity: 1;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topRight {
+  position: absolute;
+  right: 0;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topRight.singleLineView {
+  min-width: 361px;
+  height: 36px;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topRight .tab-dropdown-wrapper {
+  height: 100%;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topRight .tab-dropdown-wrapper .dropdownIcon {
+  z-index: 5;
+  margin: 5px;
+  position: absolute;
+  right: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topRight .tab-dropdown-wrapper .tab-dropdowns-container {
+  position: absolute;
+  z-index: 3;
+  right: 1px;
+  top: 3px;
+  width: 111px;
+  padding-left: 4px;
+  padding-bottom: 7px;
+  padding-right: 4px;
+  padding-top: 25px;
+  background-color: #fdfdfd;
+  opacity: 0.98;
+  white-space: nowrap;
+  border-radius: 2px;
+  -webkit-transition: width linear 0.05s;
+  transition: width linear 0.05s;
+  -webkit-box-shadow: 0px 0px 4px 0px black;
+  box-shadow: 0px 0px 4px 0px black;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topRight .tab-dropdown-wrapper .tab-dropdowns-container.closed {
+  padding-left: 0;
+  padding-right: 0;
+  width: 0;
+  overflow-x: hidden;
+  -webkit-transition: width linear 0.05s;
+  transition: width linear 0.05s;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topRight .tab-dropdown-wrapper .tab-dropdowns-container.singleLineView {
+  position: relative;
+  padding-top: 0;
+  background-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  width: 100%;
+}
+
+.manifest-top
+  .topRow
+  .topContainerWrapper
+  .topContainer
+  .topRight
+  .tab-dropdown-wrapper
+  .tab-dropdowns-container.singleLineView
+  .tab-dropdown {
+  float: right;
+}
+
+.manifest-top
+  .topRow
+  .topContainerWrapper
+  .topContainer
+  .topRight
+  .tab-dropdown-wrapper
+  .tab-dropdowns-container.singleLineView
+  .eachTabDropdown {
+  display: inline-block;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topRight .tab-dropdown-wrapper .tab-dropdowns-container.singleLineView .response {
+  min-width: 75px;
+}
+
+.manifest-top
+  .topRow
+  .topContainerWrapper
+  .topContainer
+  .topRight
+  .tab-dropdown-wrapper
+  .tab-dropdowns-container.singleLineView
+  .setLevelButton {
+  margin: 2px 5px;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topRight .tab-dropdown-wrapper .tab-dropdowns-container .tab-dropdown {
+  text-align: center;
+}
+
+.manifest-top
+  .topRow
+  .topContainerWrapper
+  .topContainer
+  .topRight
+  .tab-dropdown-wrapper
+  .tab-dropdowns-container
+  .tab-dropdown
+  .eachTabDropdown {
+  position: relative;
+  width: 92px;
+  height: 28px;
+  margin: 0 auto;
+}
+
+.manifest-top
+  .topRow
+  .topContainerWrapper
+  .topContainer
+  .topRight
+  .tab-dropdown-wrapper
+  .tab-dropdowns-container
+  .tab-dropdown
+  .tabSetText {
+  position: absolute;
+  left: 0;
+  top: 8px;
+}
+
+.manifest-top
+  .topRow
+  .topContainerWrapper
+  .topContainer
+  .topRight
+  .tab-dropdown-wrapper
+  .tab-dropdowns-container
+  .tab-dropdown
+  .dropdownContainer {
+  position: absolute;
+  right: 3px;
+  top: 4px;
+  z-index: 2;
+}
+
+.manifest-top
+  .topRow
+  .topContainerWrapper
+  .topContainer
+  .topRight
+  .tab-dropdown-wrapper
+  .tab-dropdowns-container
+  .tab-dropdown
+  .dashDropdown {
+  position: relative;
+  width: 104px;
+  height: 28px;
+}
+
+.manifest-top
+  .topRow
+  .topContainerWrapper
+  .topContainer
+  .topRight
+  .tab-dropdown-wrapper
+  .tab-dropdowns-container
+  .tab-dropdown
+  .setLevelButton {
+  padding: 6px;
+}
+
+.manifest-top .topRow .topContainerWrapper .topContainer .topRight .tab-dropdown-wrapper .tab-dropdowns-container .response {
+  margin: 2px 4px;
+  padding: 3px 0;
+  line-height: 15px;
+}
+
+.manifest-top
+  .topRow
+  .topContainerWrapper
+  .topContainer
+  .topRight
+  .tab-dropdown-wrapper
+  .tab-dropdowns-container
+  .toggleManifestHeaderIcon {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.05s linear;
+  transition: all 0.05s linear;
+}
+
+.manifest-top
+  .topRow
+  .topContainerWrapper
+  .topContainer
+  .topRight
+  .tab-dropdown-wrapper
+  .tab-dropdowns-container
+  .toggleManifestHeaderIcon
+  .collapseText:hover {
+  color: #666;
+  -webkit-transition: all 0.05s linear;
+  transition: all 0.05s linear;
+}
+
+.manifest-top
+  .topRow
+  .topContainerWrapper
+  .topContainer
+  .topRight
+  .tab-dropdown-wrapper
+  .tab-dropdowns-container
+  .toggleManifestHeaderIcon
+  .collapseIcon {
+  -webkit-transition: -webkit-transform 0.05s linear;
+  transition: -webkit-transform 0.05s linear;
+  transition: transform 0.05s linear;
+  transition: transform 0.05s linear, -webkit-transform 0.05s linear;
+}
+
+.manifest-top
+  .topRow
+  .topContainerWrapper
+  .topContainer
+  .topRight
+  .tab-dropdown-wrapper
+  .tab-dropdowns-container
+  .toggleManifestHeaderIcon
+  .collapseIcon.rotated {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  -webkit-transition: -webkit-transform 0.05s linear;
+  transition: -webkit-transform 0.05s linear;
+  transition: transform 0.05s linear;
+  transition: transform 0.05s linear, -webkit-transform 0.05s linear;
+}
+
+.manifest-top .clearBoth {
+  clear: both;
+}
+
+.manifest-top .inputsRow {
+  height: 55px;
+  overflow-y: hidden;
+  -webkit-transition: height linear 0.05s;
+  transition: height linear 0.05s;
+}
+
+.manifest-top .inputsRow input {
+  background-color: #fdfdfd;
+  width: 100%;
+  padding: 5px 3px;
+  -webkit-box-shadow: 0px 0px 10px -6px rgba(0, 0, 0, 0.74);
+  box-shadow: 0px 0px 10px -6px rgba(0, 0, 0, 0.74);
+}
+
+.manifest-top .inputsRow input:focus {
+  border-color: #0080ff;
+  color: #0080ff;
+  -webkit-transition: color linear 0.05s;
+  transition: color linear 0.05s;
+}
+
+.manifest-top .inputsRow input:focus::-webkit-input-placeholder {
+  color: #0080ff;
+  -webkit-transition: color linear 0.05s;
+  transition: color linear 0.05s;
+}
+
+.manifest-top .inputsRow input:focus:-ms-input-placeholder {
+  color: #0080ff;
+  -webkit-transition: color linear 0.05s;
+  transition: color linear 0.05s;
+}
+
+.manifest-top .inputsRow input:focus::-ms-input-placeholder {
+  color: #0080ff;
+  -webkit-transition: color linear 0.05s;
+  transition: color linear 0.05s;
+}
+
+.manifest-top .inputsRow input:focus::placeholder {
+  color: #0080ff;
+  -webkit-transition: color linear 0.05s;
+  transition: color linear 0.05s;
+}
+
+.viewerContents {
+  height: calc(100% - 55px - 36px);
+  -webkit-transition: height linear 0.05s;
+  transition: height linear 0.05s;
+  position: relative;
+  padding-left: 42px;
+  background-color: #fdfdfd;
+  margin-top: 3px;
+}
+
+.viewerContents.viewerContents.closedHeader {
+  height: calc(100% - 33px);
+  -webkit-transition: height linear 0.05s;
+  transition: height linear 0.05s;
+}
+
+.viewerContents .manifest-text-container {
+  height: 100%;
+}
+
+.viewerContents .manifest-text-container.showVideo {
+  height: 50%;
+}
+
+@media screen and (min-width: 800px) {
+  .viewerContents .manifest-text-container.showVideo.onlyViewer {
+    height: 100%;
+    width: calc(50% - 30px);
+  }
+}
+
+.viewerContents .manifest-text-container .textComponentContainer {
+  height: 100%;
+  -webkit-transition: height linear 0.05s;
+  transition: height linear 0.05s;
+}
+
+.viewerContents .manifest-text-container .textComponentContainer.searchOpen {
+  height: calc(100% - 27px);
+  -webkit-transition: height linear 0.05s;
+  transition: height linear 0.05s;
+}
+
+.viewerContents .manifest-text-container .search {
+  padding: 6px 0 1px 0;
+  height: 18px;
+  font-size: 12px;
+  border-bottom: 1px solid black;
+  -webkit-transition: all linear 0.05s;
+  transition: all linear 0.05s;
+  max-width: 800px;
+}
+
+.viewerContents .manifest-text-container .search .searchComponents .inputContainer {
+  width: calc(100% - 66px);
+  display: block;
+  float: left;
+}
+
+.viewerContents .manifest-text-container .search .searchComponents .inputContainer .searchInput {
+  height: 100%;
+  width: 100%;
+  border-radius: 2px;
+  background-color: inherit;
+}
+
+.viewerContents .manifest-text-container .search .searchComponents .searchFields {
+  display: block;
+  float: right;
+  max-width: 66px;
+  margin-top: 4px;
+}
+
+.viewerContents .manifest-text-container .search.errored {
+  background-color: red;
+}
+
+.viewerContents .metricsAndVideo {
+  position: relative;
+  height: 50%;
+}
+
+@media screen and (min-width: 800px) {
+  .viewerContents .metricsAndVideo.onlyViewer {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    right: 0;
+    top: 0;
+  }
+}
+
+.viewerContents .metricsAndVideo .videoPanel {
+  height: 100%;
+  background-color: #eee;
+  padding: 4px 0px 0px 4px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.viewerContents .metricsAndVideo .videoPanel .videoPlayerContainer {
+  height: 100%;
+  width: 100%;
+  background-color: #fdfdfd;
+  position: relative;
+}
+
+.viewerContents .metricsAndVideo .videoPanel.onlyViewer {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  padding-bottom: 4px;
+  padding-top: 0px;
+}
+
+@media screen and (min-width: 800px) {
+  .viewerContents .metricsAndVideo .videoPanel.onlyViewer {
+    height: 50%;
+  }
+}
+
+.viewerContents .metricsAndVideo .videoPanel.metricsShowing {
+  position: relative;
+  height: 50%;
+  padding: 2px 0px 0px 4px;
+}
+
+@media screen and (min-width: 800px) {
+  .viewerContents .metricsAndVideo .videoPanel.metricsShowing {
+    padding-bottom: 4px;
+    padding-top: 0px;
+  }
+}
+
+.viewerContents .metricsAndVideo .metricsPanel {
+  height: 100%;
+  background-color: #eee;
+  padding: 4px 0px 0px 4px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.viewerContents .metricsAndVideo .metricsPanel .metricsContainer {
+  height: 100%;
+  width: 100%;
+  background-color: #fdfdfd;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 17px;
+}
+
+.viewerContents .metricsAndVideo .metricsPanel.onlyViewer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding-top: 4px;
+  padding-bottom: 0px;
+}
+
+@media screen and (min-width: 800px) {
+  .viewerContents .metricsAndVideo .metricsPanel.onlyViewer {
+    height: 100%;
+    padding-top: 0;
+  }
+  .viewerContents .metricsAndVideo .metricsPanel.onlyViewer.videoShowing {
+    height: 50%;
+  }
+}
+
+.viewerContents .metricsAndVideo .metricsPanel.videoShowing {
+  height: 50%;
+  padding: 4px 0px 2px 4px;
+}
+
+.manifestTools {
+  position: absolute;
+  width: 30px;
+  left: 0;
+  background: rgba(200, 200, 200, 0.3);
+  margin: 6px;
+  border-radius: 10px;
+  -webkit-transition: all linear 0.05s;
+  transition: all linear 0.05s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.manifestTools:hover {
+  background: rgba(200, 200, 200, 0.7);
+  -webkit-transition: all linear 0.05s;
+  transition: all linear 0.05s;
+}

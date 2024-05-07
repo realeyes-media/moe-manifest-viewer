@@ -1,0 +1,59 @@
+@import '../../shared/utils/vars';
+
+.tab {
+  overflow: hidden;
+  margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+
+  .tablinks {
+    cursor: pointer;
+    transition: $transition-speed;
+    margin: 0px 12px 0px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    display: -webkit-inline-box;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+}
+
+.eachLink {
+  padding: 10px;
+  &:hover {
+    background-color: #e0e0e0;
+    transition: 0.3s;
+  }
+}
+
+.active {
+  border-bottom: 1px solid black;
+  text-decoration: none;
+  height: 20px;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  &.pass {
+    background-color: $green-color;
+  }
+
+  &.replay {
+    background-color: $replay-color;
+  }
+
+  &.rollback {
+    background-color: $dark-gold;
+  }
+
+  &.stall {
+    background-color: $error-color;
+  }
+}
