@@ -1,7 +1,7 @@
 # MOE: Viewer
 
 Built with Angular (v6 > v9)
-**Note:** Project requires Node 10.13 or later.
+**Note:** Project requires Node 14.x.
 
 ### About
 
@@ -72,6 +72,7 @@ To save a viewer as it is in local storage, press `Save Viewer` in the icon bar.
 
 ### Development
 
+- NOTE: Node 14.x is needed to install the dependencies correctly
 - Run `npm install` to install dependencies
 - Run `npx ng serve` to temporarily build the app and start a dev server. Navigate to `http://localhost:4200/`. The app will automatically rebuild and reload if you change any of the source files.
 - To build the app, run `ng build`. For production builds, use the `--prod` flag. The result of this build will be stored in the '/dist' directory.
