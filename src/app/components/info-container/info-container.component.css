@@ -1,0 +1,25 @@
+.dot {
+  height: 12px;
+  width: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+}
+
+.dot.pass {
+  background-color: #99e699;
+}
+
+.dot.replay {
+  background-color: orange;
+}
+
+.dot.rollback {
+  background-color: darkgoldenrod;
+}
+
+.dot.stall {
+  background-color: red;
+}

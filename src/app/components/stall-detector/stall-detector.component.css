@@ -1,0 +1,73 @@
+.stall {
+  background-color: darkred;
+  color: lightgray;
+}
+
+.rollback {
+  background-color: darkgoldenrod;
+  color: lightgray;
+}
+
+.vol-control {
+  float: right;
+  position: relative;
+  bottom: 2px;
+  margin-top: 5px;
+}
+
+.volume {
+  float: right;
+  margin-top: 3px;
+}
+
+.pollInterval {
+  width: 60px;
+}
+
+.stallThresholdInput {
+  width: 40px;
+}
+
+.masterUrl {
+  width: 500px;
+}
+
+.stallThresholdContainer {
+  display: inline;
+}
+
+.stallThresholdButton {
+  height: 20px;
+  line-height: 0px;
+  margin: 2px;
+}
+
+.response {
+  text-align: center;
+  margin: 2px 4px;
+  min-width: 60px;
+  line-height: 25px;
+  float: right;
+}
+
+.response.pass {
+  background-color: #99e699;
+}
+
+.response.stall {
+  background-color: red;
+}
+
+.response.replay {
+  background-color: orange;
+}
+
+.response.rollback {
+  background-color: darkgoldenrod;
+}
+
+.stallDetectorButton {
+  height: 20px;
+  line-height: 0px;
+  margin: 2px;
+}

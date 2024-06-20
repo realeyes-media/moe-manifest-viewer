@@ -1,0 +1,8 @@
+version: '3.6'
+services:
+  manifest-viewer-dev:
+    build:
+      context: .
+    container_name: manifest-viewer-dev
+    ports:
+      - 8081:80

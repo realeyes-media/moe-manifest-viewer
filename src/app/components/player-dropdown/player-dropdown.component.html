@@ -1,0 +1,17 @@
+<div class="allplayersContainer" [class.closed]="closed" (clickOutside)="toggleMenu(false)">
+  <div class="players">
+    <div *ngIf="selectedPlayer" (click)="selectedPlayerClick()" class="player currentplayer">
+      <div class="playerText">{{ selectedPlayer | playerTitle }}</div>
+      <div class="caret">&#9660;</div>
+    </div>
+    <div
+      class="player"
+      *ngFor="let player of allplayers; let i = index"
+      [class.hideplayer]="player === selectedPlayer || !player || player === VideoPlayers.NONE"
+      [class.disabled]="!canPlayType(player)"
+    >
+      <div class="playerText" (click)="closed ? toggleMenu(true) : playerClick(player)">{{ player | playerTitle }}</div>
+      <div *ngIf="!selectedPlayer && i === 0" class="caret" (click)="toggleMenu(closed)">&#9660;</div>
+    </div>
+  </div>
+</div>

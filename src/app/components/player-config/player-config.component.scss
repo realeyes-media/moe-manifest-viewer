@@ -1,0 +1,19 @@
+.options-modal-textarea {
+  padding: 9px;
+  background: #ddd;
+  width: 100%;
+  outline: none;
+  box-sizing: border-box;
+}
+.no-resize {
+  resize: none;
+}
+
+.option-button {
+  margin-bottom: 10px;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

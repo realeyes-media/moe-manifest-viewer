@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "declaration": false,
+    "downlevelIteration": true,
+    // "noUnusedLocals": true, FIX_ME: this will stop prod build, need to fix code base errors
+    "skipLibCheck": true,
+    "noStrictGenericChecks": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "lib": ["dom", "es2018"],
+    "mapRoot": "./src/",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "target": "es2015",
+    "importHelpers": true,
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node"]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

@@ -1,0 +1,108 @@
+@import '../../shared/utils/vars';
+
+.bar {
+  background-color: #eee;
+  min-height: 100vh;
+
+  .sidebarWrapper {
+    min-height: 100vh;
+  }
+  .build-info {
+    display: none;
+    position: relative;
+    bottom: 107px;
+    padding: 5px 0;
+    text-align: center;
+    font-weight: bold;
+    color: #fdfdfd;
+    background-color: #333;
+  }
+
+  &:hover,
+  &.showLargeMenu {
+    background-color: #ccc;
+    width: 180px;
+    display: block;
+
+    .iconText {
+      padding-left: 20px;
+      display: inline-block;
+    }
+
+    .build-info {
+      display: block;
+    }
+  }
+
+  .iconText {
+    display: none;
+  }
+
+  .iconWrapper {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    padding: 5px;
+    &:hover {
+      background-color: #aaa;
+      border-radius: 20px;
+    }
+    .findInManifest {
+      font-size: 18px;
+    }
+    .material-icons,
+    img {
+      font-size: 18px;
+      &.iconActive {
+        color: green;
+      }
+      &.iconError {
+        color: $error-color;
+      }
+    }
+  }
+
+  .scrollingOptionsContainer {
+    position: absolute;
+    left: $manifestToolsWidth;
+    z-index: 2;
+    font-size: 12px;
+    background-color: $whitest;
+    width: 100px;
+    border: 2px solid $dark;
+    border-bottom: 1px solid $dark;
+    .scrollOption {
+      border-bottom: 1px solid $dark;
+      padding: 2px;
+      cursor: pointer;
+      &:hover {
+        background-color: $off-white;
+      }
+      &.currentOption {
+        background-color: $green-color !important;
+      }
+    }
+  }
+
+  .pollingOptions {
+    position: absolute;
+    left: $manifestToolsWidth;
+    z-index: 2;
+    font-size: 12px;
+    background-color: $whitest;
+    width: 59px;
+    border: 2px solid $dark;
+    border-bottom: 1px solid $dark;
+
+    .input-number {
+      width: 30px;
+      height: 9px;
+    }
+    .checkbox {
+      position: absolute;
+      bottom: 12px;
+      height: 12px;
+      right: 6px;
+    }
+  }
+}

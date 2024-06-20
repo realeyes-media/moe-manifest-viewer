@@ -1,0 +1,49 @@
+.logList {
+  height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.logList ul {
+  height: 350px;
+  overflow-y: scroll;
+}
+
+.noneDot {
+  height: 12px;
+  width: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  &.pass {
+    background-color: green;
+  }
+}
+
+.tailDot {
+  float: right;
+  height: 12px;
+  width: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  top: 2px;
+  right: 110px;
+  &.pass {
+    background-color: green;
+  }
+}
+
+.tailLogs {
+  float: right;
+  position: relative;
+  right: 50px;
+}

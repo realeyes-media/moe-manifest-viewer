@@ -1,0 +1,32 @@
+<div id="shakaPlayerContainer" (mouseover)="toggleTopBar(true)" (mouseout)="toggleTopBar(false)">
+  <app-player-overlay
+    [hidden]="!showTopBar"
+    [muted]="muted || volume === 0"
+    [bitrates$]="bitratesList$"
+    [width]="width"
+    [currentBitrate]="currentBitrate"
+    [playerHeight]="height"
+    [version]="version"
+    [usingAbr]="player?.getConfiguration()?.abr.enabled"
+    (bitrateSelect)="setQualityByBitrate($event.bitrate)"
+    (autoSelect)="setABR()"
+    (toggleMute)="switchMuted($event)"
+  ></app-player-overlay>
+  <app-subtitles [viewerState]="viewerState"></app-subtitles>
+  <div class="holdTemp" #playerContainer>
+    <video
+      #video
+      class="video-player"
+      autoplay
+      [muted]="muted"
+      (pause)="setPlayerState('paused')"
+      (playing)="setPlayerState('playing')"
+      (waiting)="setPlayerState('waiting')"
+      (seeking)="setPlayerState('seeking')"
+      (ended)="setPlayerState('ended')"
+      (durationchange)="onDurationChange($event)"
+      (timeupdate)="onTimeUpdate($event)"
+      (volumechange)="onVolumeChange($event)"
+    ></video>
+  </div>
+</div>

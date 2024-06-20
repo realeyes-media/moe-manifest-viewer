@@ -1,0 +1,11 @@
+<div class="scrollingOptions">
+  <span class="noneDot" (click)="setScrolling(scrollTypes.NONE)" [class.pass]="scrolling === scrollTypes.NONE"></span> <span> None</span>
+  <span class="tailDot" (click)="setScrolling(scrollTypes.TAIL_MANIFEST)" [class.pass]="scrolling === scrollTypes.TAIL_MANIFEST"></span>
+  <span class="tailLogs"> TailLogs</span>
+</div>
+
+<ul (wheel)="onMouseWheel($event)" #scrollPlayerLogs class="logList">
+  <li *ngFor="let playerLog of loggerService.logs">
+    {{ playerLog }}
+  </li>
+</ul>

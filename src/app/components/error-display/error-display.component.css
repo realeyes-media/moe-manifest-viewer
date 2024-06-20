@@ -1,0 +1,16 @@
+.errorContainer {
+  padding: 5px;
+}
+
+.errorContainer .errTitle {
+  margin: 0;
+  padding: 15px 0;
+}
+
+.errorContainer .mixedContentContainer .link {
+  color: #0080ff;
+}
+
+.errorContainer .mixedContentContainer .link:hover {
+  cursor: pointer;
+}

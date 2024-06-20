@@ -1,0 +1,12 @@
+.subtitlesViewer .dataTitle {
+  font-weight: bold;
+}
+
+.manifestSelector {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.manifestSelector select {
+  margin-left: 1rem;
+}

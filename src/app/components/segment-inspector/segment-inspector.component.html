@@ -1,0 +1,28 @@
+<div class="content">
+  <div *ngIf="!protectedStreamError" class="search-segment">
+    <input
+      type="text"
+      placeholder="Enter a segment number or full path"
+      class="input-segment"
+      (keydown)="onKeyDown($event)"
+      [(ngModel)]="urlToSearch"
+    />
+    <button class="search-button" type="button" (click)="onClick()">Inspect segment</button>
+  </div>
+  <div *ngIf="error && !protectedStreamError" class="not-url">
+    <span>Incorrect path url or segment number</span>
+  </div>
+  <div *ngIf="protectedStreamError" class="not-url">
+    <strong>{{ protectedStreamError }}</strong>
+  </div>
+  <div *ngIf="url && !error">
+    <div *ngIf="isUrlTS">
+      <div>URL type: {{ urlType }}</div>
+      <div #jsonView>Loading . . .</div>
+    </div>
+    <div *ngIf="!isUrlTS">
+      <!--Remove this when fmp4 library is integrated-->
+      <span>This functionality is in development</span>
+    </div>
+  </div>
+</div>

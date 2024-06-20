@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app"
+  },
+  "files": ["src/main.ts", "src/polyfills.ts"],
+  "include": ["node_modules/@types/hls.js/index.d.ts", "**/*.d.ts"]
+}

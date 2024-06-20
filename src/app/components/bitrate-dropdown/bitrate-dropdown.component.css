@@ -1,0 +1,70 @@
+.allBitratesContainer {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  max-height: 100%;
+  -webkit-transition: max-height 0.05s linear;
+  transition: max-height 0.05s linear;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.75);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.allBitratesContainer .bitrates .bitrate {
+  background-color: #fdfdfd;
+  color: #333;
+  padding: 2px;
+  padding-top: 3px;
+  border-bottom: 1px solid #333;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  clear: both;
+  height: 21px;
+  -webkit-transition: background-color 0.05s linear;
+  transition: background-color 0.05s linear;
+}
+
+.allBitratesContainer .bitrates .bitrate.hideBitrate {
+  display: none;
+}
+
+.allBitratesContainer .bitrates .bitrate.currentBitrate {
+  background-color: #99e699;
+}
+
+.allBitratesContainer .bitrates .bitrate.currentBitrate:hover {
+  opacity: 0.8;
+  background-color: #99e699;
+}
+
+.allBitratesContainer .bitrates .bitrate:hover {
+  cursor: pointer;
+  background-color: #ddd;
+  -webkit-transition: background-color 0.05s linear;
+  transition: background-color 0.05s linear;
+}
+
+.allBitratesContainer .bitrates .bitrateText {
+  color: black;
+  float: left;
+}
+
+.allBitratesContainer .bitrates .caret {
+  cursor: pointer;
+  color: black;
+  float: right;
+}
+
+.allBitratesContainer .bitrates .abrCheck {
+  font-size: 11px;
+}
+
+.allBitratesContainer.closed {
+  max-height: 20px;
+  -webkit-transition: max-height 0.05s linear;
+  transition: max-height 0.05s linear;
+}

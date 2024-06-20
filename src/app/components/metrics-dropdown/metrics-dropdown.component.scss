@@ -1,0 +1,56 @@
+@import '../../shared/utils/vars';
+
+.textDropdownContainer {
+  position: relative;
+  .textContainer {
+    float: left;
+    .singleMetric {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+  .dropdownContainer {
+    position: relative;
+    float: left;
+    .inputDropdownContainer {
+      overflow-y: hidden;
+      box-sizing: border-box;
+      max-height: 16px;
+      user-select: none;
+      transition: max-height $transition-speed linear;
+      position: absolute;
+      border: 2px solid $dark;
+      font-size: 11px;
+      z-index: 2;
+      text-align: center;
+      line-height: 12px;
+
+      .eachItem {
+        background-color: rgba(255, 255, 255, 0.93);
+        color: $dark;
+        padding: 0px 10px;
+        border-bottom: 1px solid $dark;
+        box-sizing: border-box;
+        cursor: pointer;
+        overflow-x: hidden;
+        position: relative;
+        &:hover {
+          cursor: pointer;
+          background-color: $off-white;
+        }
+        .hideMetric {
+          display: none;
+        }
+        .eachItemText {
+          white-space: nowrap;
+        }
+      }
+      &.open {
+        max-height: 83px;
+        transition: max-height $transition-speed linear;
+        z-index: 3;
+        overflow-y: scroll;
+      }
+    }
+  }
+}

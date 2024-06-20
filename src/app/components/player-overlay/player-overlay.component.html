@@ -1,0 +1,16 @@
+<div class="playerOverlay">
+  <div class="bitratesContainer" *ngIf="(bitrates$ | async)?.length > 1" [style.max-height]="playerHeight - 78 + 'px'">
+    <app-bitrate-dropdown
+      [bitrates]="bitrates$ | async"
+      [usingAbr]="usingAbr"
+      [currentBitrate]="currentBitrate"
+      (bitrateSelect)="emitBitrate($event.bitrate, $event.mouseEvent)"
+      (autoSelect)="onAutoSelect()"
+    ></app-bitrate-dropdown>
+  </div>
+  <button class="overlayButton" [hidden]="width < 314" (click)="toggleMuteVideo(!muted)">
+    <span *ngIf="muted">Unmute</span>
+    <span *ngIf="!muted">Mute</span>
+  </button>
+  <span *ngIf="version" [hidden]="width < 542"> {{ version }}</span>
+</div>

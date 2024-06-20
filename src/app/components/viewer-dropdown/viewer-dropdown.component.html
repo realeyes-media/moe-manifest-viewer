@@ -1,0 +1,8 @@
+<div class="inputDropdownContainer" [class.open]="show && (storageService.storedViewers$ | async)?.length">
+  <div class="eachViewer" *ngFor="let viewer of storageService.storedViewers$ | async" (click)="storedSelect(viewer)">
+    <span class="eachViewerText">
+      {{ viewer.options.name === defaultName() ? viewer.url : viewer.options.name }}
+    </span>
+    <span (click)="removeViewer(viewer)" class="closeButton">&times;</span>
+  </div>
+</div>

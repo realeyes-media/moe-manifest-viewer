@@ -1,0 +1,16 @@
+<div class="tab">
+  <ul class="tablinks">
+    <li class="eachLink" [class.active]="tab.active" *ngFor="let tab of tabs" (click)="selectTab(tab)">
+      {{ tab.tabTitle }}
+      <span
+        class="dot"
+        *ngIf="tab.tabTitle === 'StallDetector'"
+        [class.pass]="viewerState.stallDetectorStatus === 'pass'"
+        [class.replay]="viewerState.stallDetectorStatus === 'replay'"
+        [class.rollback]="viewerState.stallDetectorStatus === 'rollback'"
+        [class.stall]="viewerState.stallDetectorStatus === 'stall'"
+      ></span>
+    </li>
+  </ul>
+</div>
+<ng-content></ng-content>

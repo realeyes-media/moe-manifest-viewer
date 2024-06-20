@@ -1,0 +1,51 @@
+<audio class="alarm" [volume]="valueVol / 100" (ended)="onAudioEnd()" src="../assets/air-horn-soundBible.com-964603082.mp3"></audio>
+<input class="vol-control" [(ngModel)]="valueVol" type="range" min="0" max="100" step="1" />
+<label class="volume" for="volume">Volume:</label>
+<form onsubmit="return false;">
+  <label for="pollInterval">Polling Interval (ms):</label>
+  &nbsp;
+  <input class="pollInterval" #pollIntervalNumber type="number" [value]="pollInterval" />
+  &nbsp;
+  <label for="stallThreshold">Stall Threshold:</label>
+  &nbsp;
+  <div class="stallThresholdContainer">
+    <input class="stallThresholdInput" #stallThresholdInput type="number" [value]="stallThreshold" />
+    <button
+      class="stallThresholdButton"
+      type="submit"
+      (click)="saveStallThreshold(stallThresholdInput.value); savePollInterval(pollIntervalNumber.value)"
+    >
+      Set Threshold
+    </button>
+  </div>
+  <br />
+  <br />
+  <div
+    class="response"
+    [class.pass]="viewerState.stallDetectorStatus === 'pass'"
+    [class.replay]="viewerState.stallDetectorStatus === 'replay'"
+    [class.stall]="viewerState.stallDetectorStatus === 'stall'"
+    [class.rollback]="viewerState.stallDetectorStatus === 'rollback'"
+  >
+    {{ viewerState.stallDetectorStatus }}
+  </div>
+  <button class="stallDetectorButton" (click)="onReloadClick()">Reload</button>
+  <button class="stallDetectorButton" (click)="toggleMasterUrl()">{{ urlText }}</button>
+  <div *ngIf="showMasterUrl">
+    <br />
+    <div #masterUrl class="masterUrl">{{ masterManifestUrl }}</div>
+  </div>
+  &nbsp;
+  <br />
+</form>
+
+<h2>Levels:</h2>
+<ul>
+  <li [class.stall]="level.isStall" [class.rollback]="level.isRollback" *ngFor="let level of manifestLevels">
+    {{ level.uri }}
+    <br />
+    •Status: {{ level.status }}
+    <br />
+    •Last frag name: {{ level.lastFrag }} {{ level.isRollback ? '•Prev frag number: ' + level.prevFragNumber : '' }}
+  </li>
+</ul>

@@ -1,0 +1,71 @@
+@import '../../shared/utils/vars.scss';
+
+#closeRelm {
+  padding: 2px 7px;
+  font-size: 20px;
+  float: right;
+}
+
+#relm-wrapper {
+  width: 470px;
+  height: 220px;
+  position: relative;
+  background-color: $whitest;
+  margin: 40px auto;
+  pointer-events: initial;
+  -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.42);
+  -moz-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.42);
+  box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.42);
+
+  .relmHeading {
+    background-color: $dark;
+    color: $whitest;
+    min-height: 64px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px 16px;
+    flex-direction: column;
+
+    .relmSideLabel {
+      font-size: 20px;
+      position: absolute;
+      left: 39%;
+    }
+  }
+}
+
+.modalContents {
+  padding: 7px 32px 32px 32px;
+
+  .relmInputs {
+    background-color: #eee;
+    width: 100%;
+    padding: 5px 3px;
+  }
+
+  .urlInput {
+    margin-bottom: 15px;
+  }
+
+  .authInput {
+    width: 100%;
+  }
+
+  .startTime {
+    float: left;
+    margin: 14px 0px;
+  }
+
+  .fileType {
+    float: left;
+    margin: 15px 0 0 51px;
+  }
+
+  .getButton {
+    float: left;
+    position: relative;
+    left: 78px;
+    margin: 7px;
+    width: 50px;
+  }
+}

@@ -1,0 +1,72 @@
+#closeRelm {
+  padding: 2px 7px;
+  font-size: 20px;
+  float: right;
+}
+
+#relm-wrapper {
+  width: 470px;
+  height: 220px;
+  position: relative;
+  background-color: #fdfdfd;
+  margin: 40px auto;
+  pointer-events: initial;
+  -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.42);
+  box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.42);
+}
+
+#relm-wrapper .relmHeading {
+  background-color: #333;
+  color: #fdfdfd;
+  min-height: 64px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px 16px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+#relm-wrapper .relmHeading .relmSideLabel {
+  font-size: 20px;
+  position: absolute;
+  left: 39%;
+}
+
+.modalContents {
+  padding: 7px 32px 32px 32px;
+}
+
+.modalContents .relmInputs {
+  background-color: #eee;
+  width: 100%;
+  padding: 5px 3px;
+}
+
+.modalContents .urlInput {
+  margin-bottom: 15px;
+}
+
+.modalContents .authInput {
+  width: 100%;
+}
+
+.modalContents .startTime {
+  float: left;
+  margin: 14px 0px;
+}
+
+.modalContents .fileType {
+  float: left;
+  margin: 15px 0 0 51px;
+}
+
+.modalContents .getButton {
+  float: left;
+  position: relative;
+  left: 78px;
+  margin: 7px;
+  width: 50px;
+}

@@ -1,0 +1,68 @@
+<app-tabs-container
+  [viewerState]="viewerState"
+  (setActiveTab)="selectActiveTab($event)"
+  (updateTabs)="updateTabs($event)"
+  *ngIf="
+    viewerState.showMetrics ||
+    viewerState.showCMCD ||
+    viewerState.showPlayerConfig ||
+    viewerState.segmentInspector.show ||
+    viewerState.showStallDetector ||
+    viewerState.showVideo ||
+    viewerState.showScteDisplay ||
+    viewerState.showSubtitles
+  "
+>
+  <app-tab *ngIf="viewerState.showMetrics" tabTitle="{{ tabName.METRICS }}">
+    <div>
+      <app-data
+        [type]="type"
+        [selectedPlayer]="selectedPlayer"
+        [viewerState]="viewerState"
+        [manifestUpdate$]="manifestUpdate$"
+        [isOnlyViewer]="isOnlyViewer"
+        [id]="id"
+        (seek)="seekToObj($event)"
+        (loadLevelRequest)="emitLoadLevelRequest($event)"
+      ></app-data>
+    </div>
+  </app-tab>
+
+  <app-tab *ngIf="viewerState.showCMCD" tabTitle="{{ tabName.CMCD }}">
+    <div>
+      <app-cmcd [viewerState]="viewerState"></app-cmcd>
+    </div>
+  </app-tab>
+
+  <app-tab *ngIf="viewerState.showPlayerConfig" tabTitle="{{ tabName.PLAYERCONFIG }}">
+    <div>
+      <app-player-config [viewerState]="viewerState"></app-player-config>
+    </div>
+  </app-tab>
+
+  <app-tab *ngIf="viewerState.segmentInspector.show" tabTitle="{{ tabName.SEGMENTINSPECTOR }}">
+    <app-segment-inspector
+      [url]="viewerState.segmentInspector.url"
+      [manifest]="manifest"
+      [viewerState]="viewerState"
+    ></app-segment-inspector>
+  </app-tab>
+
+  <app-tab *ngIf="viewerState.showScteDisplay" tabTitle="{{ tabName.SCTEDISPLAY }}">
+    <app-scte-display [viewerState]="viewerState"></app-scte-display>
+  </app-tab>
+
+  <app-tab *ngIf="viewerState.showStallDetector" tabTitle="{{ tabName.STALLDETECTOR }}">
+    <app-stall-detector [viewerReset$]="viewerReset$" [manifestUpdate$]="manifestUpdate$" [viewerState]="viewerState"></app-stall-detector>
+  </app-tab>
+
+  <app-tab *ngIf="!useNative && viewerState.showPlayerLogs" tabTitle="{{ tabName.PLAYERLOGS }}">
+    <div>
+      <app-player-logs *ngIf="!useNative" [scrolling]="scrolling" [viewerState]="viewerState"></app-player-logs>
+    </div>
+  </app-tab>
+
+  <app-tab *ngIf="viewerState.showSubtitles" tabTitle="{{ tabName.SUBTITLES }}">
+    <app-subtitles-viewer [manifestUpdate$]="manifestUpdate$" [viewerState]="viewerState"></app-subtitles-viewer>
+  </app-tab>
+</app-tabs-container>
